@@ -67,6 +67,7 @@ Stores the actual ad content.
     
     *   **Core Data**
         *   `ad_name` (string): Internal name for the ad.
+        *   `img` (string): URL to the image.
         *   `platform` (array of strings): `"meta"` | `"snapchat"` | `"tiktok"` | `"youtube"` | `"pinterest"`.
         *   `media_type` (string): `"image"` | `"video"` | `"carousel"`.
         *   `landing_page` (string): URL.
