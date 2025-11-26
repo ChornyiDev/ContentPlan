@@ -74,15 +74,23 @@ Stores the actual ad content.
         *   `assets_link` (string): URL to Google Drive/Dropbox.
         *   `comments` (string): Internal notes.
 
-    *   **Tags** (Dynamic Map)
-        *   `tags` (map): Key-value pairs matching `tag_categories` in the parent Content Plan.
+    *   **Tags** (List of Structs)
+        *   `tags` (array of objects): List of selected tags using the same Data Type as `content_plans`.
+            *   **FlutterFlow Type**: `List <Data Type: Tag>`
+            *   **Structure**:
             ```json
-            {
-              "Funnel step": ["Awareness"],
-              "Audience": ["B2B"],
-              "Product": ["Shoes"]
-            }
+            [
+              {
+                "category": "Audience",
+                "options": ["B2B"] 
+              },
+              {
+                "category": "Product",
+                "options": ["Shoes"]
+              }
+            ]
             ```
+            *Note: Even though we select only one option usually, keeping it as a list `options` allows for multi-select in the future and reuses the same Data Type.*
 
     *   **Platform Specific Data** (Map)
         *   `platform_content` (map): Structure depends on `platform` field.
