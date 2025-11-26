@@ -76,8 +76,6 @@ Stores the actual ad content.
 
     *   **Tags** (List of Structs)
         *   `tags` (array of objects): List of selected tags using the same Data Type as `content_plans`.
-            *   **FlutterFlow Type**: `List <Data Type: Tag>`
-            *   **Structure**:
             ```json
             [
               {
