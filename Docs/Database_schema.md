@@ -99,10 +99,10 @@ Stores the actual ad content.
 
         **Single Text Fields (Strings)**
         *   `headline` (String): Used by Snapchat, YouTube, Pinterest.
-        *   `ad_text` (String): Used by TikTok.
-        *   `description` (String): Used by Pinterest.
-        *   `short_headline` (String): Used by YouTube.
-        *   `long_headline` (String): Used by YouTube.
+        *   `tiktok_ad_text` (String): Used by TikTok.
+        *   `pinterest_description` (String): Used by Pinterest.
+        *   `youtube_short_headline` (String): Used by YouTube.
+        *   `youtube_long_headline` (String): Used by YouTube.
 
 ## Querying Strategy (FlutterFlow)
 
