@@ -23,19 +23,24 @@ Represents a workspace for a specific client.
 *   **Document ID**: Auto-generated (e.g., `plan_123`)
 *   **Fields**:
     *   `name` (string): Name of the content plan (e.g., "Client X Master Plan").
-    *   `status` (string): `"Active"` | `"Archived"` | `"On Hold"`.
+    *   `status` (enum): `"Active"` | `"Archived"` | `"On Hold"`.
     *   `client_ref` (reference): Reference to `users/{client_user_id}`.
     *   `created_at` (timestamp).
     *   `updated_at` (timestamp).
     *   `enabled_statuses` (array of strings): List of available statuses for ads in this plan (e.g., `["Draft", "In Review", "Approved", "Live"]`).
     *   `enabled_platforms` (array of strings): List of platform IDs enabled for this plan (e.g., `["meta", "tiktok"]`). If empty, all platforms are available.
-    *   `enabled_tags` (map): Configuration for dropdowns unique to this plan.
+    *   `enabled_tags` (array of objects): Configuration for dropdowns unique to this plan.
         ```json
-        {
-          "Funnel step": ["Awareness", "Conversion"],
-          "Audience": ["B2B", "B2C"],
-          "Product": ["Shoes", "Hats"]
-        }
+        [
+          {
+            "category": "Funnel step",
+            "options": ["Awareness", "Conversion"]
+          },
+          {
+            "category": "Audience",
+            "options": ["B2B", "B2C"]
+          }
+        ]
         ```
 
 ### 3. `campaigns` (Subcollection of `content_plans`)
@@ -43,11 +48,11 @@ Stores metadata for campaigns. "Always On" is treated as a special campaign or j
 *   **Path**: `content_plans/{planId}/campaigns/{campaignId}`
 *   **Fields**:
     *   `name` (string): Campaign name (e.g., "Black Friday 2024", "Always On").
-    *   `type` (string): `"always_on"` | `"campaign"`.
+    *   `type` (enum): `"always_on"` | `"campaign"`.
     *   `start_date` (timestamp, optional).
     *   `end_date` (timestamp, optional).
     *   `budget` (number, optional).
-    *   `status` (string): `"active"` | `"completed"` | `"planned"`.
+    *   `status` (enum): `"active"` | `"completed"` | `"planned"`.
 
 ### 4. `ads` (Subcollection of `content_plans`)
 Stores the actual ad content.
@@ -58,7 +63,7 @@ Stores the actual ad content.
         *   `campaign_id` (string): ID of the document in the `campaigns` subcollection.
         *   `created_at` (timestamp).
         *   `updated_at` (timestamp).
-        *   `status` (string): `"Draft"` | `"Live"` | `"Paused"` | `"Ended"`.
+        *   `status` (enum): `"In_Progress"` | `"Approved_by_lf"` | `"Live"` | `"Paused"` | `"Ended"`.
     
     *   **Core Data**
         *   `ad_name` (string): Internal name for the ad.

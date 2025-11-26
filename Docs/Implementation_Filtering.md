@@ -10,11 +10,11 @@ We need to define these structures in FlutterFlow to parse the Maps from Firesto
 
 #### `TagConfiguration` (For `content_plans.enabled_tags`)
 Used to store the available options for dropdowns.
-*   **Structure**: Map<String, List<String>>
-*   **Note**: FlutterFlow handles Maps natively, but for complex logic, it's often easier to treat this as a JSON object or use a helper function.
-*   **Alternative (List of Structs)**: If Maps are hard to iterate in UI builders:
-    *   `category_name` (String)
+*   **Structure**: List<Struct> (Array of Objects)
+*   **Fields**:
+    *   `category` (String)
     *   `options` (List<String>)
+*   **Why**: Lists of objects are easier to iterate through in FlutterFlow UI (e.g., generating a ListView of Dropdowns) compared to Maps.
 
 #### `AdTags` (For `ads.tags`)
 Used to store the selected tags for an ad.
