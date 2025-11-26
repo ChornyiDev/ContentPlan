@@ -60,7 +60,7 @@ Stores the actual ad content.
 *   **Note**: Ads are placed directly under the Content Plan (not inside Campaigns) to allow easy querying of "All Ads" for a client. They are linked to campaigns via `campaign_id`.
 *   **Fields**:
     *   **Metadata**
-        *   `campaign_id` (string): ID of the document in the `campaigns` subcollection.
+        *   `campaign_id` (reference): ID of the document in the `campaigns` subcollection.
         *   `created_at` (timestamp).
         *   `updated_at` (timestamp).
         *   `status` (enum): `"In_Progress"` | `"Approved_by_lf"` | `"Live"` | `"Paused"` | `"Ended"`.
