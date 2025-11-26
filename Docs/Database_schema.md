@@ -90,23 +90,19 @@ Stores the actual ad content.
             ```
             *Note: Even though we select only one option usually, keeping it as a list `options` allows for multi-select in the future and reuses the same Data Type.*
 
-    *   **Platform Specific Content (Flat Fields)**
-        *   *These fields are present in the Ad document but are only shown/used based on the selected platform.*
-        
-        *   `headlines` (List<String>): 
-            *   **Used by**: Meta (1-5), Snapchat (1), YouTube (1 - Main), Pinterest (1 - Main).
-        *   `preview_texts` (List<String>): 
-            *   **Used by**: Meta (1-5).
-        *   `ad_texts` (List<String>): 
-            *   **Used by**: TikTok (1).
-        *   `descriptions` (List<String>): 
-            *   **Used by**: Pinterest (1).
-        *   `short_headlines` (List<String>): 
-            *   **Used by**: YouTube (1).
-        *   `long_headlines` (List<String>): 
-            *   **Used by**: YouTube (1).
+    *   **Platform Specific Content (Simplified)**
+        *   *We separate Meta (which needs arrays) from others (which need simple text) to make UI binding easier.*
 
-        *Note: We use Lists (arrays) for text fields to support multiple variations (e.g., Meta allows 5 headlines) or simply to keep the type consistent even if only 1 item is allowed.*
+        **Meta Fields (Arrays / Lists)**
+        *   `meta_headlines` (List<String>): Up to 5 headlines.
+        *   `meta_preview_texts` (List<String>): Up to 5 preview texts.
+
+        **Single Text Fields (Strings)**
+        *   `headline` (String): Used by Snapchat, YouTube, Pinterest.
+        *   `ad_text` (String): Used by TikTok.
+        *   `description` (String): Used by Pinterest.
+        *   `short_headline` (String): Used by YouTube.
+        *   `long_headline` (String): Used by YouTube.
 
 ## Querying Strategy (FlutterFlow)
 
