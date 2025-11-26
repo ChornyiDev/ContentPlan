@@ -94,8 +94,8 @@ Stores the actual ad content.
         *   *We separate Meta (which needs arrays) from others (which need simple text) to make UI binding easier.*
 
         **Meta Fields (Arrays / Lists)**
-        *   `meta_headlines` (List<String>): Up to 5 headlines.
-        *   `meta_preview_texts` (List<String>): Up to 5 preview texts.
+        *   `meta_headlines` (List of String): Up to 5 headlines.
+        *   `meta_preview_texts` (List of String): Up to 5 preview texts.
 
         **Single Text Fields (Strings)**
         *   `headline` (String): Used by Snapchat, YouTube, Pinterest.
