@@ -63,12 +63,12 @@ Stores the actual ad content.
         *   `campaign_ref` (reference): Reference to `campaigns/{campaignId}`.
         *   `created_at` (timestamp).
         *   `updated_at` (timestamp).
-        *   `status` (enum): `"In_Progress"` | `"Approved_by_lf"` | `"Live"` | `"Paused"` | `"Ended"`.
+        *   `status` (string): `"In_Progress"` | `"Approved_by_lf"` | `"Live"` | `"Paused"` | `"Ended"`.
     
     *   **Core Data**
         *   `ad_name` (string): Internal name for the ad.
         *   `img` (string): URL to the image.
-        *   `platform` (array of strings): `"meta"` | `"snapchat"` | `"tiktok"` | `"youtube"` | `"pinterest"`.
+        *   `platform` (string): `"meta"` | `"snapchat"` | `"tiktok"` | `"youtube"` | `"pinterest"`.
         *   `media_type` (string): `"image"` | `"video"` | `"carousel"`.
         *   `landing_page` (string): URL.
         *   `assets_link` (string): URL to Google Drive/Dropbox.
