@@ -16,11 +16,11 @@
 
 ## Metadata стейти
 
-3. **tempCampaignRef** (Document Reference - campaigns, nullable)
+3. **campaignRef** (Document Reference - campaigns, nullable)
    - Посилання на кампанію
    - Обов'язкове поле
 
-4. **tempStatus** (String)
+4. **status** (String)
    - Статус реклами
    - Значення: "In_Progress" | "Approved_by_lf" | "Live" | "Paused" | "Ended"
    - Початкове значення: "In_Progress"
@@ -29,41 +29,41 @@
 
 ## Core Data стейти
 
-5. **tempAdName** (String)
+5. **adName** (String)
    - Внутрішня назва реклами
    - Обов'язкове поле
    - Початкове значення: ""
 
-6. **tempImgUrl** (String)
+6. **imgUrl** (String)
    - URL картинки реклами
    - Початкове значення: ""
 
-7. **tempUploadedImage** (Uploaded File Path, nullable)
+7. **uploadedImage** (Uploaded File Path, nullable)
    - Для завантаження нової картинки
    - Якщо користувач обере нову картинку, вона збережеться тут
-   - Після Upload → оновити tempImgUrl
+   - Після Upload → оновити imgUrl
    - Початкове значення: `null`
 
-8. **tempPlatform** (String)
+8. **platform** (String)
    - Платформа для реклами
    - Значення: "meta" | "snapchat" | "tiktok" | "youtube" | "pinterest"
    - Обов'язкове поле
    - Початкове значення: ""
 
-9. **tempMediaType** (String)
+9. **mediaType** (String)
    - Тип медіа
    - Значення: "image" | "video" | "carousel"
    - Початкове значення: "image"
 
-10. **tempLandingPage** (String)
+10. **landingPage** (String)
     - URL лендінгу
     - Початкове значення: ""
 
-11. **tempAssetsLink** (String)
+11. **assetsLink** (String)
     - Посилання на Google Drive/Dropbox
     - Початкове значення: ""
 
-12. **tempComments** (String)
+12. **comments** (String)
     - Внутрішні нотатки
     - Початкове значення: ""
 
@@ -71,7 +71,7 @@
 
 ## Tags стейти
 
-13. **tempTags** (List<TagStruct>)
+13. **tags** (List<TagStruct>)
     - Список вибраних тегів
     - Структура: `[{category: "Audience", options: ["B2B"], type: "single"}]`
     - Початкове значення: `[]`
@@ -82,33 +82,33 @@
 
 ### Meta (Arrays)
 
-14. **tempMetaHeadlines** (List<String>)
+14. **metaHeadlines** (List<String>)
     - До 5 заголовків для Meta
     - Початкове значення: `[]`
 
-15. **tempMetaPreviewTexts** (List<String>)
+15. **metaPreviewTexts** (List<String>)
     - До 5 preview текстів для Meta
     - Початкове значення: `[]`
 
 ### Single Text Fields
 
-16. **tempHeadline** (String)
+16. **headline** (String)
     - Заголовок для Snapchat, YouTube, Pinterest
     - Початкове значення: ""
 
-17. **tempTiktokAdText** (String)
+17. **tiktokAdText** (String)
     - Текст для TikTok
     - Початкове значення: ""
 
-18. **tempPinterestDescription** (String)
+18. **pinterestDescription** (String)
     - Опис для Pinterest
     - Початкове значення: ""
 
-19. **tempYoutubeShortHeadline** (String)
+19. **youtubeShortHeadline** (String)
     - Короткий заголовок для YouTube
     - Початкове значення: ""
 
-20. **tempYoutubeLongHeadline** (String)
+20. **youtubeLongHeadline** (String)
     - Довгий заголовок для YouTube
     - Початкове значення: ""
 
@@ -130,9 +130,9 @@
 ## Підсумок: **22 Component State змінні**
 
 **Обов'язкові для заповнення (валідація):**
-- tempAdName
-- tempCampaignRef
-- tempPlatform
+- adName
+- campaignRef
+- platform
 
 **Опціональні:**
 - Решта полів (залежать від платформи та специфіки реклами)
@@ -145,26 +145,26 @@
 IF adDocument parameter != null (Edit режим):
   → isEditMode = true
   → adDocumentRef = adDocument.reference
-  → tempAdName = adDocument.ad_name
-  → tempCampaignRef = adDocument.campaign_ref
-  → tempStatus = adDocument.status
-  → tempImgUrl = adDocument.img
-  → tempPlatform = adDocument.platform
-  → tempMediaType = adDocument.media_type
-  → tempLandingPage = adDocument.landing_page
-  → tempAssetsLink = adDocument.assets_link
-  → tempComments = adDocument.comments
-  → tempTags = adDocument.tags
-  → tempMetaHeadlines = adDocument.meta_headlines
-  → tempMetaPreviewTexts = adDocument.meta_preview_texts
-  → tempHeadline = adDocument.headline
-  → tempTiktokAdText = adDocument.tiktok_ad_text
-  → tempPinterestDescription = adDocument.pinterest_description
-  → tempYoutubeShortHeadline = adDocument.youtube_short_headline
-  → tempYoutubeLongHeadline = adDocument.youtube_long_headline
+  → adName = adDocument.ad_name
+  → campaignRef = adDocument.campaign_ref
+  → status = adDocument.status
+  → imgUrl = adDocument.img
+  → platform = adDocument.platform
+  → mediaType = adDocument.media_type
+  → landingPage = adDocument.landing_page
+  → assetsLink = adDocument.assets_link
+  → comments = adDocument.comments
+  → tags = adDocument.tags
+  → metaHeadlines = adDocument.meta_headlines
+  → metaPreviewTexts = adDocument.meta_preview_texts
+  → headline = adDocument.headline
+  → tiktokAdText = adDocument.tiktok_ad_text
+  → pinterestDescription = adDocument.pinterest_description
+  → youtubeShortHeadline = adDocument.youtube_short_headline
+  → youtubeLongHeadline = adDocument.youtube_long_headline
 ELSE (Create режим):
   → isEditMode = false
-  → Всі temp* значення залишаються пустими/default
+  → Всі значення залишаються пустими/default
 ```
 
 ---
@@ -174,30 +174,30 @@ ELSE (Create режим):
 ```
 On Tap Save Button:
   1. Валідація:
-     - IF tempAdName is empty → Show error
-     - IF tempCampaignRef is null → Show error
-     - IF tempPlatform is empty → Show error
+     - IF adName is empty → Show error
+     - IF campaignRef is null → Show error
+     - IF platform is empty → Show error
   
   2. IF isEditMode == true:
        → Backend Call: Update Document (adDocumentRef)
        → Set Fields: {
-           ad_name: tempAdName,
-           campaign_ref: tempCampaignRef,
-           status: tempStatus,
-           img: tempImgUrl,
-           platform: tempPlatform,
-           media_type: tempMediaType,
-           landing_page: tempLandingPage,
-           assets_link: tempAssetsLink,
-           comments: tempComments,
-           tags: tempTags,
-           meta_headlines: tempMetaHeadlines,
-           meta_preview_texts: tempMetaPreviewTexts,
-           headline: tempHeadline,
-           tiktok_ad_text: tempTiktokAdText,
-           pinterest_description: tempPinterestDescription,
-           youtube_short_headline: tempYoutubeShortHeadline,
-           youtube_long_headline: tempYoutubeLongHeadline,
+           ad_name: adName,
+           campaign_ref: campaignRef,
+           status: status,
+           img: imgUrl,
+           platform: platform,
+           media_type: mediaType,
+           landing_page: landingPage,
+           assets_link: assetsLink,
+           comments: comments,
+           tags: tags,
+           meta_headlines: metaHeadlines,
+           meta_preview_texts: metaPreviewTexts,
+           headline: headline,
+           tiktok_ad_text: tiktokAdText,
+           pinterest_description: pinterestDescription,
+           youtube_short_headline: youtubeShortHeadline,
+           youtube_long_headline: youtubeLongHeadline,
            updated_at:ServerTimestamp
          }
   
@@ -209,3 +209,4 @@ On Tap Save Button:
        → Close Component / Navigate Back
        → Show "Ad Saved Successfully"
 ```
+
