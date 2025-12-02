@@ -179,7 +179,7 @@ On Tap Save Button:
      - IF platform is empty → Show error
   
   2. IF isEditMode == true:
-       → Backend Call: Update Document (adDocumentRef)
+       → Backend Call: Update Document (adDocument.reference)
        → Set Fields: {
            ad_name: adName,
            campaign_ref: campaignRef,
@@ -198,7 +198,7 @@ On Tap Save Button:
            pinterest_description: pinterestDescription,
            youtube_short_headline: youtubeShortHeadline,
            youtube_long_headline: youtubeLongHeadline,
-           updated_at:ServerTimestamp
+           updated_at: ServerTimestamp
          }
   
   3. ELSE (Create):
@@ -209,4 +209,5 @@ On Tap Save Button:
        → Close Component / Navigate Back
        → Show "Ad Saved Successfully"
 ```
+
 
