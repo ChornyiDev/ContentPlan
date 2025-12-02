@@ -7,9 +7,10 @@
    - `false` – режим створення нового
    - Початкове значення: `false`
 
-2. **adDocumentRef** (Document Reference, nullable)
-   - Посилання на документ, який редагується (якщо Edit)
-   - Використовується для Update
+2. **adDocument** (Document - ads, nullable)
+   - Повний документ, який редагується (якщо Edit)
+   - Містить всі дані, так що не потрібен додатковий запит
+   - Використовується `adDocument.reference` для Update
    - Початкове значення: `null`
 
 ---
@@ -144,7 +145,6 @@
 ```
 IF adDocument parameter != null (Edit режим):
   → isEditMode = true
-  → adDocumentRef = adDocument.reference
   → adName = adDocument.ad_name
   → campaignRef = adDocument.campaign_ref
   → status = adDocument.status
