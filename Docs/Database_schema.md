@@ -6,6 +6,26 @@ This schema is designed for **Firebase Firestore**. It prioritizes **low read co
 ### Core Architecture: Subcollections
 We use a hierarchical structure where `ads` and `campaigns` are subcollections of `content_plans`. This ensures data isolation between clients and simplifies security rules.
 
+## Data Types
+
+### TagStruct
+Represents a tag category with its available options and selection mode.
+*   **Fields**:
+    *   `category` (string): Name of the tag category (e.g., "Audience", "Product", "Funnel step").
+    *   `options` (array of strings): List of selected or available options for this category (e.g., `["B2B", "B2C"]`).
+    *   `type` (string): Selection mode for this tag category.
+        *   `"single"`: Only one option can be selected.
+        *   `"multi"`: Multiple options can be selected.
+
+**Example:**
+```json
+{
+  "category": "Audience",
+  "options": ["B2B"],
+  "type": "single"
+}
+```
+
 ## Collections Structure
 
 ### 1. `users` (Root Collection)
@@ -29,16 +49,18 @@ Represents a workspace for a specific client.
     *   `updated_at` (timestamp).
     *   `enabled_statuses` (array of strings): List of available statuses for ads in this plan (e.g., `["Draft", "In Review", "Approved", "Live"]`).
     *   `enabled_platforms` (array of strings): List of platform IDs enabled for this plan (e.g., `["meta", "tiktok"]`). If empty, all platforms are available.
-    *   `enabled_tags` (array of objects): Configuration for dropdowns unique to this plan.
+    *   `enabled_tags` (array of TagStruct): Configuration for tag categories available in this plan.
         ```json
         [
           {
             "category": "Funnel step",
-            "options": ["Awareness", "Conversion"]
+            "options": ["Awareness", "Conversion"],
+            "type": "single"
           },
           {
             "category": "Audience",
-            "options": ["B2B", "B2C"]
+            "options": ["B2B", "B2C"],
+            "type": "multi"
           }
         ]
         ```
@@ -74,21 +96,23 @@ Stores the actual ad content.
         *   `assets_link` (string): URL to Google Drive/Dropbox.
         *   `comments` (string): Internal notes.
 
-    *   **Tags** (List of Structs)
-        *   `tags` (array of objects): List of selected tags using the same Data Type as `content_plans`.
+    *   **Tags** (List of TagStruct)
+        *   `tags` (array of TagStruct): List of selected tags for this ad.
             ```json
             [
               {
                 "category": "Audience",
-                "options": ["B2B"] 
+                "options": ["B2B"],
+                "type": "single"
               },
               {
                 "category": "Product",
-                "options": ["Shoes"]
+                "options": ["Shoes", "Accessories"],
+                "type": "multi"
               }
             ]
             ```
-            *Note: Even though we select only one option usually, keeping it as a list `options` allows for multi-select in the future and reuses the same Data Type.*
+            *Note: The `type` field indicates whether this tag allows single or multiple selections. The `options` array contains the selected value(s).*
 
     *   **Platform Specific Content (Simplified)**
         *   *We separate Meta (which needs arrays) from others (which need simple text) to make UI binding easier.*
