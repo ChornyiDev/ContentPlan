@@ -31,18 +31,11 @@ List<AdsRecord>? filterAdsList(
   List<TagStruct>? selectedTags,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
-  print('Filter Function Called');
-  print('Total Ads: ${adsList.length}');
-  print('Selected Campaign: $selectedCampaign');
-  print('Selected Statuses: $selectedStatuses');
-  print('Selected Platforms: $selectedPlatforms');
-  print('Selected Tags: $selectedTags');
 
   return adsList.where((ad) {
     // 1. Campaign Filter
     if (selectedCampaign != null) {
       if (ad.campaignRef != selectedCampaign) {
-        // print('Ad ${ad.reference.id} rejected by Campaign');
         return false;
       }
     }
@@ -56,7 +49,6 @@ List<AdsRecord>? filterAdsList(
       }
       // Direct string comparison since status is now a String
       if (!selectedStatuses.contains(status)) {
-        // print('Ad ${ad.reference.id} rejected by Status: $status');
         return false;
       }
     }
@@ -73,7 +65,6 @@ List<AdsRecord>? filterAdsList(
 
       // Check if the ad's single platform is in the list of selected platforms
       if (!selectedPlatforms.contains(adPlatform)) {
-        // print('Ad ${ad.reference.id} rejected by Platform: $adPlatform');
         return false;
       }
     }
@@ -91,7 +82,6 @@ List<AdsRecord>? filterAdsList(
         List<TagStruct> adTags = [];
         try {
           final rawTags = ad.tags;
-          print('DEBUG: Type of ad.tags: ${rawTags.runtimeType}');
 
           if (rawTags == null) {
             adTags = [];
@@ -100,11 +90,9 @@ List<AdsRecord>? filterAdsList(
             adTags = (rawTags as List).map((e) => e as TagStruct).toList();
           } else {
             // If it's a single TagStruct or something else, wrap in a list
-            print('WARNING: ad.tags is not a List, wrapping single item');
             adTags = [rawTags as TagStruct];
           }
         } catch (e) {
-          print('ERROR parsing ad.tags: $e');
           adTags = [];
         }
 
@@ -121,7 +109,6 @@ List<AdsRecord>? filterAdsList(
         }
 
         if (!categoryMatchFound) {
-          // print('Ad ${ad.reference.id} rejected by Tag Category: ${filterTag.category}');
           return false;
         }
       }

@@ -1,0 +1,155 @@
+(index):1 <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes">
+ This app is linked to the debug service: ws://127.0.0.1:63579/d_-55QR2rIE=/ws
+js_primitives.dart:28 ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+js_primitives.dart:28 The following assertion was thrown during performLayout():
+js_primitives.dart:28 RenderFlex children have non-zero flex but incoming height constraints are unbounded.
+js_primitives.dart:28 When a column is in a parent that does not provide a finite height constraint, for example if it is
+js_primitives.dart:28 in a vertical scrollable, it will try to shrink-wrap its children along the vertical axis. Setting a
+js_primitives.dart:28 flex on a child (e.g. using Expanded) indicates that the child is to expand to fill the remaining
+js_primitives.dart:28 space in the vertical direction.
+js_primitives.dart:28 These two directives are mutually exclusive. If a parent is to shrink-wrap its child, the child
+js_primitives.dart:28 cannot simultaneously expand to fit its parent.
+js_primitives.dart:28 Consider setting mainAxisSize to MainAxisSize.min and using FlexFit.loose fits for the flexible
+js_primitives.dart:28 children (using Flexible rather than Expanded). This will allow the flexible children to size
+js_primitives.dart:28 themselves to less than the infinite remaining space they would otherwise be forced to take, and
+js_primitives.dart:28 then will cause the RenderFlex to shrink-wrap the children rather than expanding to fit the maximum
+js_primitives.dart:28 constraints provided by the parent.
+js_primitives.dart:28 If this message did not help you determine the problem, consider using debugDumpRenderTree():
+js_primitives.dart:28   https://flutter.dev/to/debug-render-layer
+js_primitives.dart:28   https://api.flutter.dev/flutter/rendering/debugDumpRenderTree.html
+js_primitives.dart:28 The affected RenderFlex is:
+js_primitives.dart:28   RenderFlex#a2787 relayoutBoundary=up14 NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE(creator: Column ← Padding ← DecoratedBox ← ConstrainedBox ← Container ← Column ← Column ← Padding ← Padding ← DecoratedBox ← ConstrainedBox ← Container ← ⋯, parentData: offset=Offset(0.0, 0.0) (can use size), constraints: BoxConstraints(w=857.0, 0.0<=h<=Infinity), size: MISSING, direction: vertical, mainAxisAlignment: start, mainAxisSize: max, crossAxisAlignment: center, verticalDirection: down, spacing: 0.0)
+js_primitives.dart:28 The creator information is set to:
+js_primitives.dart:28   Column ← Padding ← DecoratedBox ← ConstrainedBox ← Container ← Column ← Column ← Padding ← Padding
+js_primitives.dart:28   ← DecoratedBox ← ConstrainedBox ← Container ← ⋯
+js_primitives.dart:28 The nearest ancestor providing an unbounded width constraint is: RenderFlex#da71a relayoutBoundary=up2 NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE:
+js_primitives.dart:28   creator: Column ← MediaQuery ← Padding ← SafeArea ← KeyedSubtree-[GlobalKey#e89ac] ← _BodyBuilder ←
+js_primitives.dart:28     MediaQuery ← LayoutId-[<_ScaffoldSlot.body>] ← CustomMultiChildLayout ← _ActionsScope ← Actions ←
+js_primitives.dart:28     AnimatedBuilder ← ⋯
+js_primitives.dart:28   parentData: offset=Offset(0.0, 0.0) (can use size)
+js_primitives.dart:28   constraints: BoxConstraints(0.0<=w<=955.0, 0.0<=h<=1266.0)
+js_primitives.dart:28   size: MISSING
+js_primitives.dart:28   direction: vertical
+js_primitives.dart:28   mainAxisAlignment: start
+js_primitives.dart:28   mainAxisSize: max
+js_primitives.dart:28   crossAxisAlignment: center
+js_primitives.dart:28   verticalDirection: down
+js_primitives.dart:28   spacing: 0.0
+js_primitives.dart:28 See also: https://flutter.dev/unbounded-constraints
+js_primitives.dart:28 If none of the above helps enough to fix this problem, please don't hesitate to file a bug:
+js_primitives.dart:28   https://github.com/flutter/flutter/issues/new?template=02_bug.yml
+js_primitives.dart:28 
+js_primitives.dart:28 The relevant error-causing widget was:
+js_primitives.dart:28   Column
+js_primitives.dart:28   Column:file:///Users/ChornyiDev/Library/Application%20Support/io.flutterflow.prod.mac/content_plan/lib/admin_panel/admin_panel_widget.dart:290:40
+js_primitives.dart:28 
+js_primitives.dart:28 When the exception was thrown, this was the stack:
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 266:3       throw_
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1250:9                                    <fn>
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1252:14                                   performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 243:5                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 293:7                                performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/layout_helper.dart 62:10                            layoutChild
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/operations.dart 117:77  tear
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1161:28                                   [_computeSizes]
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1255:32                                   performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/layout_helper.dart 62:10                            layoutChild
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/operations.dart 117:77  tear
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1161:28                                   [_computeSizes]
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1255:32                                   performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 243:5                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 243:5                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 293:7                                performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 243:5                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 465:7                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/layout_helper.dart 62:10                            layoutChild
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/operations.dart 117:77  tear
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1161:28                                   [_computeSizes]
+js_primitives.dart:28 package:flutter/src/rendering/flex.dart 1255:32                                   performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/shifted_box.dart 243:5                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/custom_layout.dart 180:10                           layoutChild
+js_primitives.dart:28 package:flutter/src/material/scaffold.dart 1118:7                                 performLayout
+js_primitives.dart:28 package:flutter/src/rendering/custom_layout.dart 249:7                            [_callPerformLayout]
+js_primitives.dart:28 package:flutter/src/rendering/custom_layout.dart 419:5                            performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 1483:11                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 3855:14                              performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/rendering/proxy_box.dart 115:10                               <fn>
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2822:7                                  layout
+js_primitives.dart:28 package:flutter/src/widgets/overlay.dart 1085:12                                  layoutChild
+js_primitives.dart:28 package:flutter/src/widgets/overlay.dart 1431:9                                   performLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 2655:7                                  [_layoutWithoutResize]
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 1160:17                                 flushLayout
+js_primitives.dart:28 package:flutter/src/rendering/object.dart 1173:14                                 flushLayout
+js_primitives.dart:28 package:flutter/src/rendering/binding.dart 629:5                                  drawFrame
+js_primitives.dart:28 package:flutter/src/widgets/binding.dart 1242:13                                  drawFrame
+js_primitives.dart:28 package:flutter/src/rendering/binding.dart 495:5                                  [_handlePersistentFrameCallback]
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/operations.dart 117:77  tear
+js_primitives.dart:28 package:flutter/src/scheduler/binding.dart 1438:7                                 [_invokeFrameCallback]
+js_primitives.dart:28 package:flutter/src/scheduler/binding.dart 1351:9                                 handleDrawFrame
+js_primitives.dart:28 package:flutter/src/scheduler/binding.dart 1204:5                                 [_handleDrawFrame]
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/operations.dart 117:77  tear
+js_primitives.dart:28 lib/_engine/engine/platform_dispatcher.dart 1312:5                                invoke
+js_primitives.dart:28 lib/_engine/engine/platform_dispatcher.dart 255:5                                 invokeOnDrawFrame
+js_primitives.dart:28 lib/_engine/engine/frame_service.dart 189:32                                      [_renderFrame]
+js_primitives.dart:28 lib/_engine/engine/frame_service.dart 101:9                                       <fn>
+js_primitives.dart:28 dart-sdk/lib/async/zone.dart 1849:54                                              runUnary
+js_primitives.dart:28 dart-sdk/lib/async/zone.dart 1804:26                                              <fn>
+js_primitives.dart:28 dart-sdk/lib/_internal/js_dev_runtime/patch/js_allow_interop_patch.dart 224:27    _callDartFunctionFast1
+js_primitives.dart:28 
+js_primitives.dart:28 The following RenderObject was being processed when the exception was fired: RenderFlex#a2787 relayoutBoundary=up14 NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE:
+js_primitives.dart:28   creator: Column ← Padding ← DecoratedBox ← ConstrainedBox ← Container ← Column ← Column ← Padding ←
+js_primitives.dart:28     Padding ← DecoratedBox ← ConstrainedBox ← Container ← ⋯
+js_primitives.dart:28   parentData: offset=Offset(0.0, 0.0) (can use size)
+js_primitives.dart:28   constraints: BoxConstraints(w=857.0, 0.0<=h<=Infinity)
+js_primitives.dart:28   size: MISSING
+js_primitives.dart:28   direction: vertical
+js_primitives.dart:28   mainAxisAlignment: start
+js_primitives.dart:28   mainAxisSize: max
+js_primitives.dart:28   crossAxisAlignment: center
+js_primitives.dart:28   verticalDirection: down
+js_primitives.dart:28   spacing: 0.0
+js_primitives.dart:28 This RenderObject had the following descendants (showing up to depth 5):
+js_primitives.dart:28     child 1: RenderClipRRect#bf333 NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE
+js_primitives.dart:28       child: RenderConstrainedBox#a0a0d NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE
+js_primitives.dart:28         child: _RenderLayoutBuilder#fc82c NEEDS-LAYOUT NEEDS-PAINT
+js_primitives.dart:28 ════════════════════════════════════════════════════════════════════════════════════════════════════
+js_primitives.dart:28 Another exception was thrown: Assertion failed: file:///Users/ChornyiDev/Library/Application%20Support/io.flutterflow.prod.mac/flutter/packages/flutter/lib/src/rendering/box.dart:2251:12
+26js_primitives.dart:28 Another exception was thrown: Assertion failed: file:///Users/ChornyiDev/Library/Application%20Support/io.flutterflow.prod.mac/flutter/packages/flutter/lib/src/rendering/box.dart:2251:12
