@@ -40,19 +40,6 @@
    - Приклад: `["Draft", "In Review", "Approved", "Live"]`
    - Початкове значення: `["In_Progress", "Approved_by_lf", "Live", "Paused", "Ended"]`
 
-7. **newStatusInput** (String)
-   - Тимчасове поле для додавання нового статусу
-   - Початкове значення: ""
-
-8. **editingStatusIndex** (Integer, nullable)
-   - Індекс статусу, який редагується (null = не редагуємо)
-   - Для inline editing у списку
-   - Початкове значення: `null`
-
-9. **editingStatusValue** (String)
-   - Значення статусу під час редагування
-   - Початкове значення: ""
-
 ---
 
 ## Enabled Platforms (динамічний список)
@@ -62,11 +49,6 @@
     - Приклад: `["meta", "tiktok"]`
     - Якщо порожній `[]` – доступні всі платформи
     - Початкове значення: `[]`
-
-11. **availablePlatformsOptions** (List<String>)
-    - Список всіх можливих платформ для вибору
-    - Статичне значення: `["meta", "snapchat", "tiktok", "youtube", "pinterest"]`
-    - Можна отримати з `platforms` collection якщо потрібно динамічно
 
 ---
 
