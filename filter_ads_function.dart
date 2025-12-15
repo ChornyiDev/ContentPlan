@@ -28,6 +28,10 @@ List<AdsRecord>? filterAdsList(
   DocumentReference? selectedCampaign,
   List<String>? selectedStatuses,
   List<String>? selectedPlatforms,
+  List<String>? selectedAudiences,
+  List<String>? selectedFunnelSteps,
+  List<String>? selectedProducts,
+  List<String>? selectedMarked,
   List<TagStruct>? selectedTags,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
@@ -69,7 +73,99 @@ List<AdsRecord>? filterAdsList(
       }
     }
 
-    // 4. Tag Filter (Complex)
+    // 4. Audience Filter
+    if (selectedAudiences != null && selectedAudiences.isNotEmpty) {
+      final adAudiences = ad.audience; // List<String>?
+
+      // If ad has no audiences, reject it if filter is active
+      if (adAudiences == null || adAudiences.isEmpty) {
+        return false;
+      }
+
+      // Check if at least one selected audience matches any of the ad's audiences
+      bool audienceMatch = false;
+      for (var selectedAudience in selectedAudiences) {
+        if (adAudiences.contains(selectedAudience)) {
+          audienceMatch = true;
+          break;
+        }
+      }
+
+      if (!audienceMatch) {
+        return false;
+      }
+    }
+
+    // 5. Funnel Step Filter
+    if (selectedFunnelSteps != null && selectedFunnelSteps.isNotEmpty) {
+      final adFunnelSteps = ad.funnelStep; // List<String>?
+
+      // If ad has no funnel steps, reject it if filter is active
+      if (adFunnelSteps == null || adFunnelSteps.isEmpty) {
+        return false;
+      }
+
+      // Check if at least one selected funnel step matches any of the ad's funnel steps
+      bool funnelStepMatch = false;
+      for (var selectedStep in selectedFunnelSteps) {
+        if (adFunnelSteps.contains(selectedStep)) {
+          funnelStepMatch = true;
+          break;
+        }
+      }
+
+      if (!funnelStepMatch) {
+        return false;
+      }
+    }
+
+    // 7. Marked Filter
+    // selectedMarked can be: ["Marked"], ["Unmarked"], ["Marked", "Unmarked"], or empty
+    if (selectedMarked != null && selectedMarked.isNotEmpty) {
+      final isMarked = ad.marked ?? false;
+      
+      // If only "Marked" is selected
+      if (selectedMarked.contains("Marked") && !selectedMarked.contains("Unmarked")) {
+        if (!isMarked) {
+          return false;
+        }
+      }
+      
+      // If only "Unmarked" is selected
+      if (selectedMarked.contains("Unmarked") && !selectedMarked.contains("Marked")) {
+        if (isMarked) {
+          return false;
+        }
+      }
+      
+      // If both "Marked" and "Unmarked" are selected, show all ads (no filter)
+      // If neither is selected (shouldn't happen), show all ads
+    }
+
+    // 8. Tag Filter (Complex)
+    // selectedMarked can be: ["Marked"], ["Unmarked"], ["Marked", "Unmarked"], or empty
+    if (selectedMarked != null && selectedMarked.isNotEmpty) {
+      final isMarked = ad.marked ?? false;
+      
+      // If only "Marked" is selected
+      if (selectedMarked.contains("Marked") && !selectedMarked.contains("Unmarked")) {
+        if (!isMarked) {
+          return false;
+        }
+      }
+      
+      // If only "Unmarked" is selected
+      if (selectedMarked.contains("Unmarked") && !selectedMarked.contains("Marked")) {
+        if (isMarked) {
+          return false;
+        }
+      }
+      
+      // If both "Marked" and "Unmarked" are selected, show all ads (no filter)
+      // If neither is selected (shouldn't happen), show all ads
+    }
+
+    // 7. Tag Filter (Complex)
     if (selectedTags != null && selectedTags.isNotEmpty) {
       for (var filterTag in selectedTags) {
         if (filterTag.options.isEmpty) {
