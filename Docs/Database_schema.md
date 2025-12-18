@@ -8,6 +8,20 @@ We use a hierarchical structure where `ads` and `campaigns` are subcollections o
 
 ## Data Types
 
+### ExternalResourceStruct
+Represents an external resource link (e.g., Google Drive, Figma, Trello).
+*   **Fields**:
+    *   `label` (string): Display text for the button (e.g., "Google Drive", "Figma Design", "Trello Board").
+    *   `url` (string): Full URL to the external resource (e.g., "https://drive.google.com/...").
+
+**Example:**
+```json
+{
+  "label": "Google Drive",
+  "url": "https://drive.google.com/drive/folders/abc123"
+}
+```
+
 ### TagStruct
 Represents a tag category with its available options and selection mode.
 *   **Fields**:
@@ -52,6 +66,19 @@ Represents a workspace for a specific client.
     *   `enabled_audiences` (array of strings): List of available audience options for this plan (e.g., `["B2B", "B2C", "Mixed"]`). Used for filtering and selection in ads.
     *   `enabled_funnel_steps` (array of strings): List of available funnel step options for this plan (e.g., `["Awareness", "Consideration", "Conversion", "Retention"]`). Used for filtering and selection in ads.
     *   `enabled_products` (array of strings): List of available product options for this plan (e.g., `["Product A", "Product B", "Service X"]`). Used for filtering and selection in ads.
+    *   `external_resources` (array of ExternalResourceStruct): List of external resource links displayed as buttons on the content plan page.
+        ```json
+        [
+          {
+            "label": "Google Drive",
+            "url": "https://drive.google.com/drive/folders/abc123"
+          },
+          {
+            "label": "Figma Design",
+            "url": "https://www.figma.com/file/xyz789"
+          }
+        ]
+        ```
     *   `enabled_tags` (array of TagStruct): Configuration for tag categories available in this plan.
         ```json
         [
@@ -92,7 +119,7 @@ Stores the actual ad content.
         *   `marked` (boolean): Flag for marking/favoriting an ad. Default: `false`.
         *   `audience` (array of strings): Selected audience types for this ad (e.g., `["B2B"]` or `["B2C", "Mixed"]`). Values come from `content_plans.enabled_audiences`.
         *   `funnel_step` (array of strings): Selected funnel steps for this ad (e.g., `["Awareness"]` or `["Consideration", "Conversion"]`). Values come from `content_plans.enabled_funnel_steps`.
-        *   `product` (array of strings): Selected products for this ad (e.g., `["Product A"]` or `["Product A", "Product B"]`). Values come from `content_plans.enabled_products`.
+        *   `product` (string): Selected product for this ad (e.g., `"Product A"`). Single selection only. Value comes from `content_plans.enabled_products`.
     
     *   **Core Data**
         *   `ad_name` (string): Internal name for the ad.

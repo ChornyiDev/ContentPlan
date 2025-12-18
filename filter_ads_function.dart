@@ -119,6 +119,22 @@ List<AdsRecord>? filterAdsList(
       }
     }
 
+    // 6. Product Filter
+    // UPDATED: ad.product is now a single String, not a List.
+    if (selectedProducts != null && selectedProducts.isNotEmpty) {
+      final adProduct = ad.product; // String?
+
+      // If ad has no product, reject it if filter is active
+      if (adProduct == null || adProduct.isEmpty) {
+        return false;
+      }
+
+      // Check if the ad's single product is in the list of selected products
+      if (!selectedProducts.contains(adProduct)) {
+        return false;
+      }
+    }
+
     // 7. Marked Filter
     // selectedMarked can be: ["Marked"], ["Unmarked"], ["Marked", "Unmarked"], or empty
     if (selectedMarked != null && selectedMarked.isNotEmpty) {
@@ -143,29 +159,6 @@ List<AdsRecord>? filterAdsList(
     }
 
     // 8. Tag Filter (Complex)
-    // selectedMarked can be: ["Marked"], ["Unmarked"], ["Marked", "Unmarked"], or empty
-    if (selectedMarked != null && selectedMarked.isNotEmpty) {
-      final isMarked = ad.marked ?? false;
-      
-      // If only "Marked" is selected
-      if (selectedMarked.contains("Marked") && !selectedMarked.contains("Unmarked")) {
-        if (!isMarked) {
-          return false;
-        }
-      }
-      
-      // If only "Unmarked" is selected
-      if (selectedMarked.contains("Unmarked") && !selectedMarked.contains("Marked")) {
-        if (isMarked) {
-          return false;
-        }
-      }
-      
-      // If both "Marked" and "Unmarked" are selected, show all ads (no filter)
-      // If neither is selected (shouldn't happen), show all ads
-    }
-
-    // 7. Tag Filter (Complex)
     if (selectedTags != null && selectedTags.isNotEmpty) {
       for (var filterTag in selectedTags) {
         if (filterTag.options.isEmpty) {
