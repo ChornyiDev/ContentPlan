@@ -86,6 +86,6 @@ Based on this architecture, we have created an HTML/CSS Prototype using the exis
 
 ### Prototype Screenshot
 
-![Media Plan UI Design Concept](file:///Users/ChornyiDev/Documents/Pontus%20Rydberg/ContentPlan/UI_Prototypes/Screenshot%202026-03-12%20at%2017.24.36.jpg)
+![Media Plan UI Design Concept](../UI_Prototypes/Screenshot%202026-03-12%20at%2017.24.36.jpg)
 
 This approach provides the exact same data capability as the current spreadsheet, but wrapped in a premium, flexible SaaS interface.
