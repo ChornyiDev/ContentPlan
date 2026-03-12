@@ -1,7 +1,7 @@
 ```
 
 ```
-# Proposal: Media Plan Feature for ellaella.io
+# Media Plan Feature Concept for ellaella.io
 
 ## Overview
 Instead of migrating a massive grid into the app (which causes poor readability, scrolling issues, and performance overhead), I propose a modern, hierarchical **"Block & Card" interface**.
@@ -88,11 +88,3 @@ graph TD
 ![Media Plan UI Design Concept](../UI_Prototypes/Screenshot%202026-03-12%20at%2017.24.36.jpg)
 
 ---
-
-## 🔗 Interactive Prototype
-To see the animations, sticky headers, and horizontal scroll in action, you can download the interactive prototype:
-
-[**Download Media_Plan_View.html**](../UI_Prototypes/Media_Plan_View.html)
-*(On GitHub: Right-click the link above and select **"Save Link As..."** to download the file, then open it in your browser)*
-
-This approach provides the exact same data capability as the current spreadsheet, but wrapped in a premium, flexible SaaS interface.
