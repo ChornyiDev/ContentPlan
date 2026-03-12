@@ -1,32 +1,36 @@
-# Media Plan Feature: Hierarchical Structure Proposal
+```
+
+```
+# Proposal: Media Plan Feature for ellaella.io
 
 ## Overview
-Based on your idea, we can replace the complex spreadsheet format with a user-friendly "Pyramid" (Hierarchical) structure. This approach is much better suited for a modern web application (like FlutterFlow) than a giant grid, as it provides a cleaner UI, better performance, and high flexibility.
+I propose to introduce a dedicated **Media Plan** module within each Content Plan. This feature will allow users to map out budgets, objectives, and weekly schedules dynamically.
 
-Instead of a single massive table, the user will interact with nested "cards" or "blocks" that represent the natural hierarchy of a media plan.
+Currently, media planning is often handled in large, complex spreadsheets. While spreadsheets are flexible, they do not translate well into a seamless, accessible Web / Mobile application experience.
 
-## The "Pyramid" Concept
+Instead of migrating a massive grid into the app (which causes poor readability, scrolling issues, and performance overhead), I propose a modern, hierarchical **"Block & Card" interface**.
 
-The hierarchy is structured in three main levels:
+## Why I Advise Against a "Spreadsheet Table" UI
+The core strength of a spreadsheet is also its greatest weakness in software development: **total lack of structure**. In a spreadsheet, you can merge cells and link fields in any arbitrary variation—for example, associating one budget with multiple campaigns or vice-versa on the fly.
 
-1.  **Campaign (Top Level)**
-    *   Acts as the main container for the media plan.
-    *   Connected to the Content Plan.
-2.  **Budget Block (Mid Level)**
-    *   A campaign can have multiple Budget blocks.
-    *   Contains its own set of standard fields.
-    *   **Flexibility:** Allows adding an infinite number of **Custom Fields** (key-value pairs) specific to this budget.
-3.  **Segment Block (Bottom Level)**
-    *   A budget can have one or multiple Segments.
-    *   Contains its own standard fields (e.g., audience, placements).
-    *   **Flexibility:** Allows adding **Custom Fields**.
-    *   **Weekly Schedule:** Contains the timeline (e.g., Week 1 to Week 52) indicating when this specific segment is active.
+This "free-form" connectivity is impossible to replicate in a Web Application without sacrificing performance, data integrity, and mobile responsiveness. A web app requires a clear logical flow to remain fast and user-friendly.
+
+**The "Pyramid" approach solves this by providing structure where it’s needed, and total flexibility where you want it:**
+1.  **Logical Hierarchy:** By using 3 fixed levels (Campaign > Budget > Segment), we ensure the interface remains clean and responsive on all devices.
+2.  **Infinite Flexibility via Custom Fields:** Instead of "merging cells," I've implemented the ability to add **any custom fields** directly to a specific Budget (Level 2) or Segment (Level 3). 
+3.  **Precision Data:** This allows you to have the same "freedom" as a spreadsheet to define unique KPIs or properties, but within a system that actually calculates totals and scales properly.
 
 ---
 
-## Visual Concept Diagram
+## 🏗 The "Pyramid" Concept
 
-Here is a diagram you can show the client to explain how the data is structured and how the UI will conceptually look:
+I propose structuring the Media Plan hierarchically. This gives the users infinite flexibility to add custom fields without breaking the design.
+
+1.  **Campaign (Top Level):** The overall container (e.g., "Q1 Marketing 2024").
+2.  **Budget Block (Mid Level):** E.g., "Meta - 100,000 kr". Users can attach custom fields specifically to this budget.
+3.  **Segment (Bottom Level):** E.g., "Audience 1". Contains specific placements and the 52-week timeline.
+
+### Conceptual Structure
 
 ```mermaid
 graph TD
@@ -37,12 +41,12 @@ graph TD
     classDef schedule fill:#dcfce7,stroke:#22c55e,stroke-width:1px,color:#333;
 
     C["🎬 Campaign<br>(e.g. 'Spring Collection 2024')"]:::campaign
-    
+
     %% Budget 1
     B1["💰 Budget Block 1<br>Platform: Meta<br>Amount: 100,000 kr"]:::budget
     CF1["Custom Field: KPI = Sales<br>Custom Field: Region = EU"]:::customField
     B1 --- CF1
-    
+
     %% Budget 2
     B2["💰 Budget Block 2<br>Platform: TikTok<br>Amount: 50,000 kr"]:::budget
 
@@ -54,59 +58,43 @@ graph TD
     S1["🎯 Segment 1<br>Audience: 18-24<br>Placement: Stories"]:::segment
     S1CF["Custom Field: Creative = Video A"]:::customField
     S1_Sched["📅 Schedule:<br>[✓] Week 10 [✓] Week 11<br>[✕] Week 12 [✓] Week 13"]:::schedule
-    
+
     S2["🎯 Segment 2<br>Audience: Retargeting"]:::segment
     S2_Sched["📅 Schedule:<br>[ ] Week 10 [ ] Week 11<br>[✓] Week 12 [✓] Week 13"]:::schedule
 
     B1 ==> S1
     S1 --- S1CF
     S1 --- S1_Sched
-    
+
     B1 ==> S2
     S2 --- S2_Sched
 
     %% Segments for Budget 2
     S3["🎯 Segment 3<br>Audience: Gen Z"]:::segment
     S3_Sched["📅 Schedule:<br>[✓] All Weeks"]:::schedule
-    
+
     B2 ==> S3
     S3 --- S3_Sched
 ```
 
 ---
 
-## Proposed Database Structure (Firebase Firestore)
+## 💻 Design Concept
 
-To support this in FlutterFlow and Firebase, we will use Firestore **Subcollections**. This ensures data is loaded securely and efficiently.
+### Key Features of the Design:
+*   **Sticky Campaign Navigation:** Easily jump between campaigns while keeping the "Total Budget" constantly visible.
+*   **Clean Budget Cards:** Each platform budget is separated into its own card, making it readable and scannable.
+*   **Custom Fields as "Chips":** Instead of empty table columns, custom data like *KPIs* or *Periods* are displayed as neat chips next to the budget.
+*   **Horizontal Timeline Scroll:** The 52-week schedule is presented as a scrollable timeline within each segment. It keeps the familiarity of the "spreadsheet blocks" while fitting beautifully on any screen size.
 
-### 1. `campaigns` (Existing subcollection of `content_plans`)
-*   `name`: string
-*   ... (existing fields)
+### Prototype Screenshot
 
-### 2. `media_plan_budgets` (New subcollection inside `campaigns`)
-*   **Path:** `content_plans/{planId}/campaigns/{campaignId}/media_plan_budgets/{budgetId}`
-*   `platform`: string (e.g., "Meta")
-*   `amount`: number (The budget sum)
-*   `comments`: string
-*   `custom_fields`: Array of Objects (Struct: `FieldStruct`)
-    *   `[ { "key": "Main KPI", "value": "LINK CLICKS" }, ... ]`
-*   `created_at`: timestamp
-
-### 3. `media_plan_segments` (New subcollection inside `media_plan_budgets`)
-*   **Path:** `.../media_plan_budgets/{budgetId}/media_plan_segments/{segmentId}`
-*   `name`: string (e.g., "Audience 1 + Look a like")
-*   `placements`: string (or array of strings)
-*   `custom_fields`: Array of Objects (Struct: `FieldStruct`)
-    *   `[ { "key": "Ad Set", "value": "Awareness" }, ... ]`
-*   `active_weeks`: Array of Integers (e.g., `[1, 2, 3, 4]`) representing which weeks of the year this segment is active.
-*   `is_live`: boolean
-*   `created_at`: timestamp
+![Media Plan UI Design Concept](../UI_Prototypes/Screenshot%202026-03-12%20at%2017.24.36.jpg)
 
 ---
 
-## Why this approach is excellent for the client:
+## 🔗 Interactive Prototype
+You can download and open the interactive HTML prototype to see the animations and horizontal scroll in action:
+[**Download / Open Media_Plan_View.html**](../UI_Prototypes/Media_Plan_View.html)
 
-1. **Clean UI vs. Tabular Mess:** In a web app, a massive Google Sheet is hard to read on smaller screens. This "card/block" structure allows us to build a beautiful, responsive UI where Budgets can be expanded/collapsed.
-2. **Infinite Flexibility:** By using a `custom_fields` array (a List of Data Types in FlutterFlow), the admin can add rows like "Main KPI", "Objective", or anything else without needing a developer to add new columns to the database.
-3. **Automated Budget Calculation:** Because Budgets are separate entities with an `amount` field, FlutterFlow can easily sum them up to show the "Total Campaign Budget" at the bottom of the page.
-4. **Isolated Schedules:** Each Segment has an `active_weeks` array. In the UI, we can render 52 small clickable boxes for the timeline. If the array contains `[12]`, box 12 is highlighted green. Very easy to implement in FlutterFlow.
+This approach provides the exact same data capability as the current spreadsheet, but wrapped in a premium, flexible SaaS interface.
