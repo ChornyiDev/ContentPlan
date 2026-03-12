@@ -4,10 +4,6 @@
 # Proposal: Media Plan Feature for ellaella.io
 
 ## Overview
-I propose to introduce a dedicated **Media Plan** module within each Content Plan. This feature will allow users to map out budgets, objectives, and weekly schedules dynamically.
-
-Currently, media planning is often handled in large, complex spreadsheets. While spreadsheets are flexible, they do not translate well into a seamless, accessible Web / Mobile application experience.
-
 Instead of migrating a massive grid into the app (which causes poor readability, scrolling issues, and performance overhead), I propose a modern, hierarchical **"Block & Card" interface**.
 
 ## Why I Advise Against a "Spreadsheet Table" UI
@@ -18,7 +14,7 @@ This "free-form" connectivity is impossible to replicate in a Web Application wi
 **The "Pyramid" approach solves this by providing structure where it’s needed, and total flexibility where you want it:**
 1.  **Logical Hierarchy:** By using 3 fixed levels (Campaign > Budget > Segment), we ensure the interface remains clean and responsive on all devices.
 2.  **Infinite Flexibility via Custom Fields:** Instead of "merging cells," I've implemented the ability to add **any custom fields** directly to a specific Budget (Level 2) or Segment (Level 3). 
-3.  **Precision Data:** This allows you to have the same "freedom" as a spreadsheet to define unique KPIs or properties, but within a system that actually calculates totals and scales properly.
+3.  **Precision Data:** This allows you to have the same "freedom" as a spreadsheet to define unique KPIs or properties.
 
 ---
 
@@ -94,7 +90,9 @@ graph TD
 ---
 
 ## 🔗 Interactive Prototype
-You can download and open the interactive HTML prototype to see the animations and horizontal scroll in action:
-[**Download / Open Media_Plan_View.html**](../UI_Prototypes/Media_Plan_View.html)
+To see the animations, sticky headers, and horizontal scroll in action, you can download the interactive prototype:
+
+[**Download Media_Plan_View.html**](../UI_Prototypes/Media_Plan_View.html)
+*(On GitHub: Right-click the link above and select **"Save Link As..."** to download the file, then open it in your browser)*
 
 This approach provides the exact same data capability as the current spreadsheet, but wrapped in a premium, flexible SaaS interface.
