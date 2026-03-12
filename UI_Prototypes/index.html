@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Prototypes Index - ellaella.io</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .hover-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-900 antialiased selection:bg-brand-100 selection:text-brand-800">
+
+    <!-- Header -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="layout-dashboard" class="w-6 h-6 text-brand-600"></i>
+                <span class="font-bold text-lg tracking-tight">ellaella.io</span>
+                <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-medium ml-2 border border-slate-200">UI Prototypes</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Prototype Directory
+            </h1>
+            <p class="text-lg text-slate-500 max-w-2xl text-balance">
+                Collection of interactive UI mockups and design system components for the ContentPlan platform.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Content Plan View -->
+            <a href="Content_Plan_View.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="layout" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Content Plan View</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Multi-level list of ads with tabs and filters.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Media Plan View -->
+            <a href="Media_Plan_View.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Media Plan View</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Budget allocation and campaign timeline visualization.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Content Plan Editor -->
+            <a href="Content_Plan_Editor.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="edit-3" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Content Plan Editor</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Workflow for creating and editing advertising content.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- User Home -->
+            <a href="User_Home.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="home" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">User Dashboard</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Main landing page for regular platform users.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Workspace Admin Panel -->
+            <a href="Workspace_Admin_Panel.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="settings" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Workspace Admin</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Management tools for workspace administrators.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- SuperAdmin Dashboard -->
+            <a href="SuperAdmin_Dashboard.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">SuperAdmin Portal</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Platform-wide management and monitoring.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Content Plan Settings -->
+            <a href="Content_Plan_Settings.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="sliders" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Plan Configuration</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Detailed settings for specific content plans.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- User Management Modals -->
+            <a href="User_Management_Modals.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Management Modals</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">UI patterns for user invites and role management.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Workspace Form Modal -->
+            <a href="Workspace_Form_Modal.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="plus-square" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Creation Flows</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Modal interfaces for creating new workspaces.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Prototype <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <!-- Design System Showcase -->
+            <a href="Design_System_Showcase.html" class="group relative overflow-hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover-card transition-all duration-300 flex flex-col gap-4 lg:col-span-1">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                    <i data-lucide="palette" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg mb-1">Design System</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Core components, typography, and color tokens.</p>
+                </div>
+                <div class="mt-auto flex items-center text-brand-600 text-sm font-semibold gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Guide <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-24 pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-slate-400">© 2024 ellaella.io Prototypes. Internal Use Only.</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors">Documentation</a>
+                <a href="#" class="text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors">Feedback</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
