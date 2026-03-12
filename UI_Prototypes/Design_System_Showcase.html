@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ellaella.io - Design System Showcase</title>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config mapping our Design System -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369A1', // Primary CTA
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        slate: {
+                            50: '#F8FAFC', // Background
+                            100: '#f1f5f9',
+                            200: '#e2e8f0', // Borders
+                            300: '#cbd5e1',
+                            400: '#94a3b8', // Muted Icons
+                            500: '#64748b', // Secondary Text
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0F172A', // Primary Text
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen p-8 lg:p-12 relative overflow-x-hidden">
+
+    <!-- Decorative Background (Glassmorphism Context) -->
+    <div
+        class="fixed top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl -z-10 pointer-events-none">
+    </div>
+    <div
+        class="fixed bottom-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-slate-300/20 blur-3xl -z-10 pointer-events-none">
+    </div>
+
+    <div class="max-w-5xl mx-auto space-y-16">
+
+        <header class="border-b border-slate-200 pb-8">
+            <h1 class="text-4xl font-bold tracking-tight text-slate-900">ellaella.io Design System</h1>
+            <p class="text-slate-500 mt-2 text-lg">Visual reference guide for FlutterFlow implementation.</p>
+        </header>
+
+        <!-- 1. TYPOGRAPHY -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span
+                    class="bg-brand-100 text-brand-700 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold">1</span>
+                Typography (Plus Jakarta Sans)
+            </h2>
+            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">30px / Bold (700)</span>
+                            <h1 class="text-3xl font-bold text-slate-900">Page Title</h1>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">20px / Bold (700)</span>
+                            <h2 class="text-xl font-bold text-slate-900">Section Header</h2>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">18px / Bold (700)</span>
+                            <h3 class="text-lg font-bold text-slate-900">Card Title</h3>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">16px / Regular (400)</span>
+                            <p class="text-base text-slate-900">Primary Body Text. Used for general descriptions, input
+                                fields, and standard readable content blocks across the dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">14px / Regular (400)</span>
+                            <p class="text-sm text-slate-500">Secondary Body Text. Used for descriptions or text inside
+                                cards.</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">14px / SemiBold (600)</span>
+                            <p class="text-sm font-semibold text-slate-900">TABLE HEADER OR SMALL BUTTON</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 mb-1 block">12px / Medium (500)</span>
+                            <p class="text-xs font-medium text-slate-500">Helper text, timestamps, or small details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. COLORS -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span
+                    class="bg-brand-100 text-brand-700 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold">2</span>
+                Color Palette
+            </h2>
+            <div class="space-y-8">
+                <!-- Brand Colors -->
+                <div>
+                    <h3 class="font-medium text-slate-900 mb-3">Brand / Action Colors</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex flex-col gap-2">
+                            <div class="w-20 h-20 rounded-xl bg-brand-50 border border-slate-200"></div>
+                            <span class="text-xs font-mono text-slate-600">Brand 50<br>#f0f9ff</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-20 h-20 rounded-xl bg-brand-100 border border-slate-200"></div>
+                            <span class="text-xs font-mono text-slate-600">Brand 100<br>#e0f2fe</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-20 h-20 rounded-xl bg-brand-500"></div>
+                            <span class="text-xs font-mono text-slate-600">Brand 500<br>#0ea5e9</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-20 h-20 rounded-xl bg-brand-600"></div>
+                            <span class="text-xs font-mono text-slate-600">Brand 600<br>#0284c7</span>
+                        </div>
+                        <div class="flex flex-col gap-2 relative">
+                            <div class="w-20 h-20 rounded-xl bg-brand-700 ring-2 ring-offset-2 ring-brand-700"></div>
+                            <span class="text-xs font-bold font-mono text-slate-900">Primary<br>#0369A1</span>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slate Neutrals -->
+                <div>
+                    <h3 class="font-medium text-slate-900 mb-3">Slate Neutrals</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex flex-col gap-2 relative">
+                            <div class="w-16 h-16 rounded-xl bg-slate-50 border border-slate-200"></div>
+                            <span class="text-xs font-mono text-slate-600">Bg<br>#F8FAFC</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-16 h-16 rounded-xl bg-slate-100 border border-slate-200"></div>
+                            <span class="text-xs font-mono text-slate-600">100<br>#f1f5f9</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-16 h-16 rounded-xl bg-slate-200"></div>
+                            <span class="text-xs font-mono text-slate-600">Borders<br>#e2e8f0</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-16 h-16 rounded-xl bg-slate-400"></div>
+                            <span class="text-xs font-mono text-slate-600">Icons<br>#94a3b8</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-16 h-16 rounded-xl bg-slate-500"></div>
+                            <span class="text-xs font-mono text-slate-600">2nd Text<br>#64748b</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="w-16 h-16 rounded-xl bg-slate-900"></div>
+                            <span class="text-xs font-mono text-slate-900 font-bold">Main Txt<br>#0F172A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic -->
+                <div>
+                    <h3 class="font-medium text-slate-900 mb-3">Semantic & Status Badges</h3>
+                    <div class="flex flex-wrap gap-6">
+                        <div class="space-y-2">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                Active (Success)
+                            </span>
+                            <div class="text-xs font-mono text-slate-500">
+                                Bg: #d1fae5<br>Text: #065f46<br>Border: #a7f3d0
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-amber-100 text-amber-800 border border-amber-200">
+                                On Hold (Warning)
+                            </span>
+                            <div class="text-xs font-mono text-slate-500">
+                                Bg: #fef3c7<br>Text: #92400e<br>Border: #fde68a
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-red-100 text-red-800 border border-red-200">
+                                Error / Danger
+                            </span>
+                            <div class="text-xs font-mono text-slate-500">
+                                Bg: #fee2e2<br>Text: #991b1b<br>Border: #fecaca
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gradients -->
+                <div class="pt-6 border-t border-slate-200 mt-8">
+                    <h3 class="font-medium text-slate-900 mb-3">Background Gradients</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl border border-slate-200 flex flex-col justify-between items-start"
+                            style="background: linear-gradient(135deg, rgba(240,249,255,0.8) 0%, rgba(241,245,249,1) 100%);">
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">Subtle Brand Gradient</h4>
+                                <p class="text-sm text-slate-600 mb-4">Used behind main headers to give a light, airy,
+                                    and premium feel.</p>
+                            </div>
+                            <div
+                                class="bg-white/80 backdrop-blur-sm px-4 py-3 rounded-xl border border-white mt-4 w-full">
+                                <p class="text-xs font-mono text-slate-600">
+                                    <span class="font-bold">Type:</span> Linear, 135deg<br>
+                                    <span class="font-bold">Color 1:</span> rgba(240,249,255,0.8) <br><span
+                                        class="text-[10px]">&nbsp;&nbsp;&nbsp;(Brand 50 @ 80%)</span><br>
+                                    <span class="font-bold text-slate-300">|</span><br>
+                                    <span class="font-bold">Color 2:</span> rgba(241,245,249,1) <br><span
+                                        class="text-[10px]">&nbsp;&nbsp;&nbsp;(Slate 100)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CARDS & ELEVATION -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span
+                    class="bg-brand-100 text-brand-700 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold">3</span>
+                Cards & Elevations (Radii & Shadows)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- standard flat card -->
+                <div>
+                    <h3 class="font-medium text-slate-900 mb-3">Standard Card (e.g. Content Plan)</h3>
+                    <!-- The exact CSS properties for this card in FF -->
+                    <div
+                        class="bg-white border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:border-[rgba(3,105,161,0.3)] cursor-pointer">
+                        <h4 class="font-bold text-slate-900 mb-2">Border Radius: 12px</h4>
+                        <p class="text-slate-500 text-sm mb-4">Background: Solid White (#FFFFFF)<br>Border: 1px Solid
+                            Slate 200 (#e2e8f0)<br>Shadow: None</p>
+                        <div class="h-px w-full bg-slate-200 mb-4"></div>
+                        <p class="text-xs text-brand-700 font-medium">Hover me to see the interaction state</p>
+                    </div>
+                </div>
+
+                <!-- Glassmorphism -->
+                <div>
+                    <h3 class="font-medium text-slate-900 mb-3">Glassmorphism Panel (e.g. Nav Navbar)</h3>
+                    <!-- The exact CSS properties for this glass effect in FF -->
+                    <div
+                        class="bg-white/75 backdrop-blur-md border border-white/50 rounded-2xl p-6 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
+                        <h4 class="font-bold text-slate-900 mb-2">Border Radius: 16px</h4>
+                        <p class="text-slate-500 text-sm mb-4">Background: White @ 75% Opacity<br>Backdrop Blur:
+                            16px<br>Border: White @ 50% Opacity</p>
+                        <button class="bg-slate-900 text-white rounded-lg px-4 py-2 text-sm font-medium">Inside
+                            Button</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. BUTTONS & INPUTS -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span
+                    class="bg-brand-100 text-brand-700 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold">4</span>
+                Buttons & Inputs
+            </h2>
+            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+
+                <h3 class="font-medium text-slate-900 mb-4">Buttons (Border Radius: 8px)</h3>
+                <div class="flex flex-wrap items-center gap-4 mb-8">
+                    <!-- Primary -->
+                    <div class="flex flex-col items-center gap-2">
+                        <button
+                            class="bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 px-5 rounded-lg transition-colors shadow-sm shadow-brand-700/20">Primary
+                            CTA</button>
+                        <span class="text-xs text-slate-400">Brand 700</span>
+                    </div>
+                    <!-- Secondary Dark -->
+                    <div class="flex flex-col items-center gap-2">
+                        <button
+                            class="bg-slate-900 hover:bg-black text-white font-semibold py-2.5 px-5 rounded-lg transition-colors shadow-sm">Secondary
+                            Action</button>
+                        <span class="text-xs text-slate-400">Slate 900</span>
+                    </div>
+                    <!-- Outline -->
+                    <div class="flex flex-col items-center gap-2">
+                        <button
+                            class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-medium py-2 px-5 rounded-lg transition-colors shadow-sm">Outline
+                            Button</button>
+                        <span class="text-xs text-slate-400">Border Slate 200</span>
+                    </div>
+                    <!-- Danger -->
+                    <div class="flex flex-col items-center gap-2">
+                        <button
+                            class="bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 px-5 rounded-lg transition-colors">Danger
+                            Action</button>
+                        <span class="text-xs text-slate-400">Red 50 -> 100</span>
+                    </div>
+                </div>
+
+                <h3 class="font-medium text-slate-900 mb-4">Input Fields (Border Radius: 8px)</h3>
+                <div class="max-w-md space-y-4">
+                    <!-- Default -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Standard Input</label>
+                        <input type="text" placeholder="Type something..."
+                            class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-slate-400">
+                        <div
+                            class="text-xs font-mono text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100 mt-2">
+                            <span class="font-bold">Focus Ring (Active State):</span><br>
+                            Border: #0ea5e9 (brand-500)<br>
+                            Box Shadow (Ring): 0 0 0 2px rgba(14, 165, 233, 0.2)
+                            <br><span class="text-brand-600 font-bold">FF Shadow Color:</span> #0EA5E9 (Opacity: 20%)
+                        </div>
+                    </div>
+                    <!-- Search Input Specific -->
+                    <div class="space-y-2 mt-6">
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Search Bar / Floating Input</label>
+                        <div class="relative">
+                            <input type="text" placeholder="Search users..."
+                                class="w-full bg-white border border-slate-200 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-slate-400 shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="w-4 h-4 rounded-full border-2 border-slate-400"></span>
+                            </div>
+                        </div>
+                        <div
+                            class="text-xs font-mono text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100 mt-2">
+                            <span class="font-bold">Default Shadow (shadow-sm):</span><br>
+                            Box Shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)
+                            <br><span class="text-brand-600 font-bold">FF Shadow Color:</span> #000000 (Opacity: 5%)
+                            <br><br>
+                            <span class="font-bold text-slate-400 italic">Often used on search bars and floating filters
+                                to lift them slightly off the background.</span>
+                        </div>
+                    </div>
+                    <!-- Error State -->
+                    <div class="space-y-2 mt-6">
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Error State Input</label>
+                        <input type="text" value="Invalid data"
+                            class="w-full bg-red-50 border border-red-300 rounded-lg px-4 py-2.5 text-red-900 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all">
+                        <p class="text-xs text-red-500 mt-1">This field is required.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</body>
+
+</html>

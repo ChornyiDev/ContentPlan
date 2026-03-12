@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ellaella.io - Workspace Panel (Redesigned)</title>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config mapping our Design System -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369A1', // CTA primary
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0F172A',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border-radius: 1rem;
+        }
+
+        .item-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .item-card:hover {
+            border-color: rgba(3, 105, 161, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen relative pb-12 pt-40 font-sans">
+    <!-- Decorative Background -->
+    <div
+        class="fixed top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl -z-10 pointer-events-none">
+    </div>
+    <div
+        class="fixed bottom-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-slate-300/20 blur-3xl -z-10 pointer-events-none">
+    </div>
+
+    <!-- NOTE: In production, switch between these two navs based on the user's role. Both are shown here for demonstration -->
+
+    <!-- Top Navigation (Super Admin View) -->
+    <nav
+        class="fixed top-4 left-4 right-4 max-w-7xl mx-auto glass-panel rounded-2xl z-50 px-6 py-3 flex items-center justify-between border-dashed border-2 border-slate-300/60">
+        <div class="flex items-center gap-4">
+            <button
+                class="flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-all shadow-sm cursor-pointer">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            </button>
+            <div class="h-5 w-px bg-slate-300 mx-1"></div>
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 rounded-lg bg-brand-100 flex items-center justify-center text-brand-700 shadow-sm border border-brand-200">
+                    <i data-lucide="building-2" class="w-4 h-4"></i>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-lg tracking-tight text-slate-900 leading-tight">Social
+                            Industries</span>
+                        <span
+                            class="px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-slate-100 text-slate-500 border border-slate-200">Workspace</span>
+                    </div>
+                </div>
+            </div>
+            <div class="h-5 w-px bg-slate-300 mx-1 hidden sm:block"></div>
+            <span
+                class="hidden sm:inline-flex px-2.5 py-1 rounded-md bg-slate-800 text-white text-xs font-semibold tracking-wide uppercase">Super
+                Admin View</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button
+                class="text-sm font-medium text-slate-600 px-3 py-1.5 bg-white hover:bg-slate-50 rounded-lg border border-slate-200 flex items-center gap-2 transition-colors cursor-pointer shadow-sm">
+                <i data-lucide="globe" class="w-4 h-4"></i> EN
+            </button>
+            <div class="h-5 w-px bg-slate-300"></div>
+            <button
+                class="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center overflow-hidden hover:border-brand-500 transition-colors shadow-sm cursor-pointer">
+                <img src="https://ui-avatars.com/api/?name=Arthur+Admin&color=0f172a&background=f8fafc"
+                    alt="User Avatar" class="w-full h-full object-cover">
+            </button>
+        </div>
+    </nav>
+
+    <!-- Top Navigation (Workspace Admin View - Main Page) -->
+    <nav
+        class="fixed top-24 left-4 right-4 max-w-7xl mx-auto glass-panel rounded-2xl z-40 px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <!-- Logo area -->
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                    e
+                </div>
+                <span
+                    class="font-bold text-lg tracking-tight text-slate-900 leading-tight hidden sm:block">ellaella.io</span>
+            </div>
+            <div class="h-5 w-px bg-slate-300 mx-1 sm:mx-2 hidden sm:block"></div>
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 rounded-lg bg-brand-100 hidden sm:flex items-center justify-center text-brand-700 shadow-sm border border-brand-200">
+                    <i data-lucide="building-2" class="w-4 h-4"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-slate-900 leading-tight">Social Industries</span>
+            </div>
+            <div class="h-5 w-px bg-slate-300 mx-1 sm:mx-2 hidden md:block"></div>
+            <span
+                class="hidden md:inline-flex px-2.5 py-1 rounded-md bg-slate-800 text-white text-xs font-semibold tracking-wide uppercase">Workspace
+                Admin</span>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div class="hidden lg:flex items-center gap-1 bg-slate-200/50 p-1 rounded-lg">
+                <button
+                    class="px-4 py-1.5 rounded-md bg-white text-brand-700 font-medium text-sm shadow-sm transition-all duration-200">Dashboard</button>
+                <button
+                    class="px-4 py-1.5 rounded-md text-slate-600 hover:text-slate-900 font-medium text-sm transition-all duration-200 cursor-pointer">Reports</button>
+                <button
+                    class="px-4 py-1.5 rounded-md text-slate-600 hover:text-slate-900 font-medium text-sm transition-all duration-200 cursor-pointer">Settings</button>
+            </div>
+
+            <div class="flex items-center gap-4 lg:border-l lg:border-slate-200 lg:pl-4">
+                <button
+                    class="text-sm font-medium text-slate-600 px-3 py-1.5 bg-white hover:bg-slate-50 rounded-lg border border-slate-200 flex items-center gap-2 transition-colors cursor-pointer shadow-sm hidden sm:flex">
+                    <i data-lucide="globe" class="w-4 h-4"></i> EN
+                </button>
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
+                            Filippa Owner</p>
+                        <p class="text-xs text-slate-500">filippa@socialindustries.se</p>
+                    </div>
+                    <button
+                        class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center overflow-hidden hover:border-brand-500 transition-colors shadow-sm cursor-pointer">
+                        <img src="https://ui-avatars.com/api/?name=Filippa+Owner&color=0369a1&background=f0f9ff"
+                            alt="User Avatar" class="w-full h-full object-cover">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+        <!-- HEADER & ACTIONS -->
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Workspace Administration</h1>
+                <p class="text-slate-500 mt-2 text-base max-w-2xl">Manage your team members and organize their access to
+                    different content plans within this workspace.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center gap-2 transition-colors shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] cursor-pointer">
+                    <i data-lucide="settings" class="w-4 h-4"></i> Workspace Settings
+                </button>
+                <button
+                    class="bg-brand-700 hover:bg-brand-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center gap-2 transition-colors shadow-sm shadow-brand-700/20 cursor-pointer">
+                    <i data-lucide="plus" class="w-4 h-4 text-brand-100"></i> New Content Plan
+                </button>
+            </div>
+        </header>
+
+        <div class="flex flex-col gap-12 items-stretch">
+
+            <!-- SECTION: Users List -->
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        Team Members
+                        <span
+                            class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-xs font-semibold border border-slate-200">12</span>
+                    </h2>
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <div class="relative group w-full sm:w-64">
+                            <i data-lucide="search"
+                                class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-brand-600 transition-colors"></i>
+                            <input type="text" placeholder="Search team..."
+                                class="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 shadow-sm transition-all">
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 font-semibold px-4 py-2 rounded-lg text-sm flex items-center justify-center gap-2 shadow-sm transition-colors whitespace-nowrap cursor-pointer"
+                            title="Invite User">
+                            <i data-lucide="user-plus" class="w-4 h-4 text-brand-600"></i> Invite User
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Roles Filter -->
+                <div class="glass-panel p-1.5 flex flex-wrap items-center gap-1 rounded-xl mb-4 w-fit">
+                    <div class="flex items-center gap-1 bg-slate-200/50 p-1 rounded-lg">
+                        <button class="px-3 py-1.5 bg-white rounded-md text-sm font-medium text-slate-900 shadow-sm">All
+                            Roles</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">Owners</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">Admins</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">Users</button>
+                    </div>
+                </div>
+
+                <!-- Users Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- USER CARD: Owner -->
+                    <div class="item-card p-4 flex flex-col justify-between h-full bg-white relative">
+                        <div class="absolute top-4 right-4">
+                            <button class="text-slate-400 hover:text-slate-900 transition-colors p-1"
+                                title="More options">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Filippa+Owner&color=92400e&background=fef3c7"
+                                alt="FO" class="w-12 h-12 rounded-full border border-amber-200">
+                            <div>
+                                <h3 class="font-bold text-slate-900 leading-tight">Filippa Owner</h3>
+                                <p class="text-sm text-slate-500 truncate w-40">filippa@social...se</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">Workspace
+                                        Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3 mt-auto">
+                            <p class="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">Access</p>
+                            <span class="text-sm text-slate-700 italic flex items-center gap-1.5"><i
+                                    data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i> All Content
+                                Plans</span>
+                        </div>
+                    </div>
+
+                    <!-- USER CARD: Admin -->
+                    <div class="item-card p-4 flex flex-col justify-between h-full bg-white relative">
+                        <div class="absolute top-4 right-4">
+                            <button class="text-slate-400 hover:text-slate-900 transition-colors p-1"
+                                title="More options">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Test+User&color=0369a1&background=e0f2fe"
+                                alt="TU" class="w-12 h-12 rounded-full border border-brand-200">
+                            <div>
+                                <h3 class="font-bold text-slate-900 leading-tight">Test User</h3>
+                                <p class="text-sm text-slate-500 truncate w-40">test@socialind...se</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-100 text-brand-800 border border-brand-200">Administrator</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3 mt-auto">
+                            <p class="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">Access</p>
+                            <span class="text-sm text-slate-700 italic flex items-center gap-1.5"><i
+                                    data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i> All Content
+                                Plans</span>
+                        </div>
+                    </div>
+
+                    <!-- USER CARD: Regular User (Carla) -->
+                    <div class="item-card p-4 flex flex-col justify-between h-full bg-white relative">
+                        <div class="absolute top-4 right-4">
+                            <button class="text-slate-400 hover:text-slate-900 transition-colors p-1"
+                                title="More options">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-start gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-bold text-lg">
+                                CO</div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 leading-tight">Carla Orrego</h3>
+                                <p class="text-sm text-slate-500 truncate w-40">carla@ur.se</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">User</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3 mt-auto">
+                            <p class="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">Assigned To (1)
+                            </p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="inline-flex items-center gap-1 px-2 py-1 bg-slate-50 border border-slate-200 rounded-md text-xs text-slate-700">
+                                    <i data-lucide="folder" class="w-3 h-3 text-brand-500"></i> Utbildningsradi...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- USER CARD: Regular User (Karin) -->
+                    <div class="item-card p-4 flex flex-col justify-between h-full bg-white relative">
+                        <div class="absolute top-4 right-4">
+                            <button class="text-slate-400 hover:text-slate-900 transition-colors p-1"
+                                title="More options">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-start gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-bold text-lg">
+                                KH</div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 leading-tight">Karin Haglund</h3>
+                                <p class="text-sm text-slate-500 truncate w-40">karin@lansforsa...</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">User</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-3 mt-auto">
+                            <p class="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">Assigned To (2)
+                            </p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="inline-flex items-center gap-1 px-2 py-1 bg-slate-50 border border-slate-200 rounded-md text-xs text-slate-700"
+                                    title="LF GBG | TRYGGHETSTJÄNSTER | 2026">
+                                    <i data-lucide="folder" class="w-3 h-3 text-brand-500"></i> LF GBG | TRYGG...
+                                </span>
+                                <span
+                                    class="inline-flex items-center gap-1 px-2 py-1 bg-slate-50 border border-slate-200 rounded-md text-xs text-slate-700"
+                                    title="LF GBG | PRIVATFÖRSÄKRING | 2026">
+                                    <i data-lucide="folder" class="w-3 h-3 text-brand-500"></i> LF GBG | PRIVA...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Load More / Pagination -->
+                <div class="flex justify-center mt-4">
+                    <button
+                        class="text-sm font-semibold text-brand-700 hover:text-brand-800 hover:bg-brand-50 px-4 py-2 rounded-lg transition-colors">
+                        Load More Users
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION: Content Plans -->
+            <div class="space-y-4 pt-6 mt-4 border-t border-slate-200/50">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        Content Plans
+                        <span
+                            class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-xs font-semibold border border-emerald-200">4</span>
+                    </h2>
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <div class="relative group w-full sm:w-64">
+                            <i data-lucide="search"
+                                class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-brand-600 transition-colors"></i>
+                            <input type="text" placeholder="Search plans..."
+                                class="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 shadow-sm transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="glass-panel p-1.5 flex flex-wrap items-center gap-1 rounded-xl mb-4 w-fit">
+                    <div class="flex items-center gap-1 bg-slate-200/50 p-1 rounded-lg">
+                        <button class="px-3 py-1.5 bg-white rounded-md text-sm font-medium text-slate-900 shadow-sm">All
+                            Status</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">Active</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">On
+                            Hold</button>
+                        <button
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">Archived</button>
+                    </div>
+                </div>
+
+                <!-- Plans Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- Plan Item 1 -->
+                    <div class="item-card p-4 group flex flex-col gap-3 relative">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="mt-1 w-8 h-8 shrink-0 rounded bg-brand-50 flex items-center justify-center text-brand-600 border border-brand-100">
+                                    <i data-lucide="folder" class="w-4 h-4"></i>
+                                </div>
+                                <div class="cursor-pointer group/title">
+                                    <h4
+                                        class="font-bold text-slate-900 leading-tight group-hover/title:text-brand-600 transition-colors">
+                                        LF GBG | TRYGGHETSTJÄNSTER</h4>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-emerald-50 text-emerald-700 border border-emerald-200">Active</span>
+                                        <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">
+                                            Updated 2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Team Members above metrics -->
+                        <div class="flex items-center gap-1.5 pt-3 mt-1 border-t border-slate-100 text-xs font-semibold text-slate-700"
+                            title="2 Team Members">
+                            <div class="flex -space-x-2">
+                                <img src="https://ui-avatars.com/api/?name=F+O&color=92400e&background=fef3c7"
+                                    class="w-5 h-5 rounded-full border border-white">
+                                <img src="https://ui-avatars.com/api/?name=T+U&color=0369a1&background=e0f2fe"
+                                    class="w-5 h-5 rounded-full border border-white">
+                            </div>
+                            <span class="ml-1">2 Team Members</span>
+                        </div>
+
+                        <!-- Metrics Row -->
+                        <div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+                            <div class="flex items-center gap-1.5" title="3 Campaigns">
+                                <i data-lucide="layout-list" class="w-3.5 h-3.5 text-slate-400"></i> 3 Campaigns
+                            </div>
+                            <div class="flex items-center gap-1.5" title="12 Ads">
+                                <i data-lucide="image" class="w-3.5 h-3.5 text-slate-400"></i> 12 Ads
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons Row -->
+                        <div class="flex items-center gap-2 pt-3 border-t border-slate-100">
+                            <button
+                                class="flex-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+                                <i data-lucide="settings" class="w-3.5 h-3.5"></i> Settings
+                            </button>
+                            <button
+                                class="flex-1 bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors border border-transparent">
+                                Open <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Plan Item 2 -->
+                    <div class="item-card p-4 group flex flex-col gap-3 relative">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="mt-1 w-8 h-8 shrink-0 rounded bg-brand-50 flex items-center justify-center text-brand-600 border border-brand-100">
+                                    <i data-lucide="folder" class="w-4 h-4"></i>
+                                </div>
+                                <div class="cursor-pointer group/title">
+                                    <h4
+                                        class="font-bold text-slate-900 leading-tight group-hover/title:text-brand-600 transition-colors">
+                                        LF GBG | PRIVATFÖRSÄKRING</h4>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-emerald-50 text-emerald-700 border border-emerald-200">Active</span>
+                                        <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">
+                                            Updated last week</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Team Members above metrics -->
+                        <div class="flex items-center gap-1.5 pt-3 mt-1 border-t border-slate-100 text-xs font-semibold text-slate-700"
+                            title="2 Team Members">
+                            <div class="flex -space-x-2">
+                                <img src="https://ui-avatars.com/api/?name=F+O&color=92400e&background=fef3c7"
+                                    class="w-5 h-5 rounded-full border border-white">
+                                <img src="https://ui-avatars.com/api/?name=T+U&color=0369a1&background=e0f2fe"
+                                    class="w-5 h-5 rounded-full border border-white">
+                            </div>
+                            <span class="ml-1">2 Team Members</span>
+                        </div>
+
+
+                        <!-- Metrics Row -->
+                        <div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+                            <div class="flex items-center gap-1.5" title="1 Campaign">
+                                <i data-lucide="layout-list" class="w-3.5 h-3.5 text-slate-400"></i> 1 Campaign
+                            </div>
+                            <div class="flex items-center gap-1.5" title="8 Ads">
+                                <i data-lucide="image" class="w-3.5 h-3.5 text-slate-400"></i> 8 Ads
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons Row -->
+                        <div class="flex items-center gap-2 pt-3 border-t border-slate-100">
+                            <button
+                                class="flex-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+                                <i data-lucide="settings" class="w-3.5 h-3.5"></i> Settings
+                            </button>
+                            <button
+                                class="flex-1 bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors border border-transparent">
+                                Open <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Plan Item 3 -->
+                    <div class="item-card p-4 group flex flex-col gap-3 relative">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="mt-1 w-8 h-8 shrink-0 rounded bg-brand-50 flex items-center justify-center text-brand-600 border border-brand-100">
+                                    <i data-lucide="folder" class="w-4 h-4"></i>
+                                </div>
+                                <div class="cursor-pointer group/title">
+                                    <h4
+                                        class="font-bold text-slate-900 leading-tight group-hover/title:text-brand-600 transition-colors">
+                                        Utbildningsradion</h4>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <span
+                                            class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide bg-amber-50 text-amber-700 border border-amber-200">On
+                                            Hold</span>
+                                        <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wide">
+                                            Updated 1 month ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Team Members above metrics -->
+                        <div class="flex items-center gap-1.5 pt-3 mt-1 border-t border-slate-100 text-xs font-semibold text-slate-700"
+                            title="2 Team Members">
+                            <div class="flex -space-x-2">
+                                <img src="https://ui-avatars.com/api/?name=F+O&color=92400e&background=fef3c7"
+                                    class="w-5 h-5 rounded-full border border-white">
+                                <img src="https://ui-avatars.com/api/?name=C+O&color=475569&background=f1f5f9"
+                                    class="w-5 h-5 rounded-full border border-white">
+                            </div>
+                            <span class="ml-1">2 Team Members</span>
+                        </div>
+
+                        <!-- Metrics Row -->
+                        <div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+                            <div class="flex items-center gap-1.5" title="5 Campaigns">
+                                <i data-lucide="layout-list" class="w-3.5 h-3.5 text-slate-400"></i> 5 Campaigns
+                            </div>
+                            <div class="flex items-center gap-1.5" title="20 Ads">
+                                <i data-lucide="image" class="w-3.5 h-3.5 text-slate-400"></i> 20 Ads
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons Row -->
+                        <div class="flex items-center gap-2 pt-3 border-t border-slate-100">
+                            <button
+                                class="flex-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+                                <i data-lucide="settings" class="w-3.5 h-3.5"></i> Settings
+                            </button>
+                            <button
+                                class="flex-1 bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition-colors border border-transparent">
+                                Open <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Plan Item 4 (Empty) -->
+                    <div
+                        class="item-card p-4 cursor-pointer group flex flex-col gap-3 border-dashed border-2 hover:border-brand-300 bg-slate-50/50 hover:bg-brand-50">
+                        <div class="flex flex-col items-center justify-center py-4 text-center">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mb-2 group-hover:bg-brand-100 transition-colors">
+                                <i data-lucide="plus" class="w-5 h-5 text-slate-400 group-hover:text-brand-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-slate-700 group-hover:text-brand-700">Explore All Plans</h4>
+                            <p class="text-xs text-slate-500 mt-1">View or create more content plans</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

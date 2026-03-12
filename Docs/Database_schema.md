@@ -42,23 +42,40 @@ Represents a tag category with its available options and selection mode.
 
 ## Collections Structure
 
-### 1. `users` (Root Collection)
+### 1. `workspaces` (Root Collection)
+Represents an isolated workspace for a client or agency. All content plans and users belong to a workspace.
+*   **Document ID**: Auto-generated
+*   **Fields**:
+    *   `name` (string): Workspace name (e.g., "Agency X", "Client Y").
+    *   `status` (string): Status of the workspace (e.g., "Active", "Inactive", "Archived").
+    *   `icon_url` (string, optional): URL to the workspace logo or avatar.
+    *   `color` (string, optional): Brand color for the workspace UI (HEX code e.g., "#0ea5e9").
+    *   `owner_id` (reference): Reference to `users/{owner_user_id}` — the original client user.
+    *   `created_at` (timestamp).
+    *   `updated_at` (timestamp).
+
+### 2. `users` (Root Collection)
 Stores user profile information.
 *   **Document ID**: `auth_user_id` (from Firebase Auth)
 *   **Fields**:
     *   `email` (string): User's email.
     *   `display_name` (string): User's full name.
-    *   `role` (string): `"admin"` | `"client"`.
+    *   `role` (string): *(Deprecated, kept for backward compatibility)* `"admin"` | `"client"`.
+    *   `workspace_ref` (reference): Reference to `workspaces/{workspaceId}`. Links the user to their workspace.
+    *   `workspace_role` (string): Role within the workspace: `"Admin"` | `"User"`.
+    *   `is_app_admin` (boolean): `true` for the global Super Admin. Default: `false`.
+    *   `assigned_plans` (array of references): *(For `"User"` role only)* References to content plans this user can access (e.g., `["content_plans/plan_abc", "content_plans/plan_xyz"]`). Admins have access to all plans in the workspace.
     *   `created_at` (timestamp).
     *   `last_login` (timestamp).
 
-### 2. `content_plans` (Root Collection)
-Represents a workspace for a specific client.
+### 3. `content_plans` (Root Collection)
+Represents a content plan within a workspace.
 *   **Document ID**: Auto-generated (e.g., `plan_123`)
 *   **Fields**:
     *   `name` (string): Name of the content plan (e.g., "Client X Master Plan").
-    *   `status` (enum): `"Active"` | `"Archived"` | `"On Hold"`.
-    *   `client_ref` (reference): Reference to `users/{client_user_id}`.
+    *   `status` (enum): `"Active"` | `Inactive"` | `"Draft"`.
+    *   `workspace_ref` (reference): Reference to `workspaces/{workspaceId}`. Links the content plan to a workspace.
+    *   `client_ref` (reference): *(Deprecated — will be removed after migration)* Reference to `users/{client_user_id}`.
     *   `created_at` (timestamp).
     *   `updated_at` (timestamp).
     *   `enabled_statuses` (array of strings): List of available statuses for ads in this plan (e.g., `["Draft", "In Review", "Approved", "Live"]`).
@@ -95,7 +112,7 @@ Represents a workspace for a specific client.
         ]
         ```
 
-### 3. `campaigns` (Subcollection of `content_plans`)
+### 4. `campaigns` (Subcollection of `content_plans`)
 Stores metadata for campaigns. "Always On" is treated as a special campaign or just a specific document here.
 *   **Path**: `content_plans/{planId}/campaigns/{campaignId}`
 *   **Fields**:
@@ -106,7 +123,7 @@ Stores metadata for campaigns. "Always On" is treated as a special campaign or j
     *   `budget` (number, optional).
     *   `status` (enum): `"active"` | `"completed"` | `"planned"`.
 
-### 4. `ads` (Subcollection of `content_plans`)
+### 5. `ads` (Subcollection of `content_plans`)
 Stores the actual ad content.
 *   **Path**: `content_plans/{planId}/ads/{adId}`
 *   **Note**: Ads are placed directly under the Content Plan (not inside Campaigns) to allow easy querying of "All Ads" for a client. They are linked to campaigns via `campaign_id`.
@@ -120,11 +137,11 @@ Stores the actual ad content.
         *   `audience` (array of strings): Selected audience types for this ad (e.g., `["B2B"]` or `["B2C", "Mixed"]`). Values come from `content_plans.enabled_audiences`.
         *   `funnel_step` (array of strings): Selected funnel steps for this ad (e.g., `["Awareness"]` or `["Consideration", "Conversion"]`). Values come from `content_plans.enabled_funnel_steps`.
         *   `product` (string): Selected product for this ad (e.g., `"Product A"`). Single selection only. Value comes from `content_plans.enabled_products`.
-    
+
     *   **Core Data**
         *   `ad_name` (string): Internal name for the ad.
         *   `img` (string): URL to the image.
-        *   `platform` (string): `"meta"` | `"snapchat"` | `"tiktok"` | `"youtube"` | `"pinterest"`.
+        *   `platform` (string): `"meta"` | `"snapchat"` | `"tiktok"` | `"youtube"` | `"pinterest"` | `"linkedin"` | `"google_display_responsive"` | `"google_display_image"`.
         *   `media_type` (string): `"image"` | `"video"` | `"carousel"`.
         *   `landing_page` (string): URL.
         *   `assets_link` (string): URL to Google Drive/Dropbox.
@@ -161,6 +178,13 @@ Stores the actual ad content.
         *   `pinterest_description` (String): Used by Pinterest.
         *   `youtube_short_headline` (String): Used by YouTube.
         *   `youtube_long_headline` (String): Used by YouTube.
+        *   `google_long_headline` (String): Used by Google Display.
+        *   `google_business_name` (String): Used by Google Display.
+        *   `linkedin_preview_text` (String): Used by Linkedin.
+
+        **Google Display Fields (Arrays / Lists)**
+        *   `google_headlines` (List of String): Up to 5 headlines.
+        *   `google_descriptions` (List of String): Up to 5 descriptions.
 
 ## Querying Strategy (FlutterFlow)
 
@@ -180,12 +204,23 @@ Stores the actual ad content.
     *   Query `content_plans/{planId}/ads`.
     *   Filter by `tags.Audience` == `"B2B"`.
 
-## Security Rules (Brief)
-*   **Users**: Can read/write their own document.
-*   **Content Plans**: Users can read/write if `client_ref` matches their auth ID (or if they are admin).
-*   **Subcollections (ads, campaigns)**: Inherit access from the parent `content_plan`.
+## Security Rules (Workspace-Based RBAC)
 
-### 5. `platforms (Optional)` (Root Collection - Configuration)
+*   **App Admin (Super Admin)**:
+    *   If user document has `is_app_admin == true` → full read/write access to all collections.
+*   **Workspaces**:
+    *   Read: User's `workspace_id` matches the workspace document ID.
+    *   Write: User's `workspace_id` matches AND `workspace_role == "admin"`.
+*   **Users**:
+    *   Can read/write their own document.
+    *   Workspace Admins can read/write users within their workspace.
+*   **Content Plans**:
+    *   Workspace Admins: Full access to all content plans where `workspace_ref` matches their `workspace_id`.
+    *   Workspace Users: Read/write access only if the content plan ID exists in their `assigned_plans` array.
+*   **Subcollections (ads, campaigns)**:
+    *   Inherit access from the parent `content_plan`.
+
+### 6. `platforms (Optional)` (Root Collection - Configuration)
 This collection acts as the **Source of Truth** for available platforms.
 *   **Document ID**: MUST be one of the standard IDs below.
 *   **Fields**:
@@ -203,6 +238,9 @@ These IDs are hardcoded in the App's Conditional Visibility logic.
 | `tiktok`    | TikTok          | `ad_text` (1)                                             |
 | `youtube`   | YouTube         | `headline` (1), `short_headline` (1), `long_headline` (1) |
 | `pinterest` | Pinterest       | `headline` (1), `description` (1)                         |
+| `linkedin`  | LinkedIn        | `headline` (1), `linkedin_preview_text` (1)               |
+| `google_display_responsive` | Google Display (Responsive) | `business_name` (1), `google_headlines` (1-5), `google_long_headline` (1), `google_descriptions` (1-5) |
+| `google_display_image` | Google Display (Image/HTML5) | *No text fields* |
 
 #### Linking Strategy
 1.  **Global Config**: The `platforms` collection stores the limits (e.g., Meta Headline = 40 chars).

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Content Plan | ellaella.io</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369A1',
+                            800: '#075985',
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            900: '#0F172A',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+        /* Hide scrollbar for clean horizontal scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border-radius: 1rem;
+        }
+
+        /* Smooth transitions */
+        .btn-transition {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen relative pb-24 pt-4 font-sans overflow-x-hidden">
+    <!-- Decorative Background -->
+    <div
+        class="fixed top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl -z-10 pointer-events-none">
+    </div>
+
+    <!-- Floating Top Navigation -->
+    <nav
+        class="fixed top-4 left-4 right-4 glass-panel rounded-2xl z-50 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-4">
+            <!-- Back Button & Title -->
+            <div class="flex items-center gap-3">
+                <button
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-300 btn-transition shadow-sm cursor-pointer"
+                    title="Back">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </button>
+                <h1 class="font-bold text-lg tracking-tight text-slate-900 hidden sm:block">LF GBG | FÖRETAG | 2026</h1>
+                <span class="sm:hidden font-bold text-base tracking-tight text-slate-900">LF GBG</span>
+            </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-3">
+            <button
+                class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-2 btn-transition shadow-sm cursor-pointer whitespace-nowrap">
+                <i data-lucide="home" class="w-4 h-4 text-slate-500"></i> <span class="hidden sm:inline">Home</span>
+            </button>
+            <button
+                class="bg-brand-700 hover:bg-brand-800 text-white font-semibold px-5 py-2 rounded-lg text-sm flex items-center gap-2 btn-transition shadow-sm shadow-brand-700/20 cursor-pointer whitespace-nowrap">
+                <i data-lucide="plus" class="w-4 h-4"></i> <span>Add new Ad</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-28 space-y-6">
+
+        <!-- Tabs Section -->
+        <div class="flex items-center gap-8 border-b border-slate-200 px-2 lg:px-4 hide-scrollbar overflow-x-auto">
+            <button
+                class="pb-3 text-brand-700 font-bold border-b-2 border-brand-700 text-base whitespace-nowrap cursor-pointer hover:text-brand-800 transition-colors">
+                Sov Gött
+            </button>
+            <button
+                class="pb-3 text-slate-500 font-medium border-b-2 border-transparent hover:text-slate-700 text-base whitespace-nowrap cursor-pointer transition-colors">
+                Always On
+            </button>
+        </div>
+
+        <!-- Filters Block -->
+        <section class="glass-card p-6 lg:p-8">
+            <div class="space-y-4">
+
+                <!-- Status Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Status:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">In
+                            progress</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Approved</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Live</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Paused</span>
+                    </div>
+                </div>
+
+                <!-- Platform Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Platform:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Meta</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Youtube</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Linkedin</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Google
+                            Display (only image/html5)</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Google
+                            Display (responsive)</span>
+                    </div>
+                </div>
+
+                <!-- Product Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Product:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Företagsförsäkring</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Fordonsförsäkring</span>
+                    </div>
+                </div>
+
+                <!-- Audience Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Audience:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Generell</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Bygg
+                            & Transport</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Kunskap
+                            & Utveckling</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Lantbruk</span>
+                    </div>
+                </div>
+
+                <!-- Funnel Step Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Funnel Step:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Conversion</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Consideration</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Awareness</span>
+                    </div>
+                </div>
+
+                <!-- Marked Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">Marked:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Marked</span>
+                        <span
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-slate-700 shadow-sm cursor-pointer hover:border-brand-300 transition-colors">Unmarked</span>
+                    </div>
+                </div>
+
+                <!-- External links Row -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 py-2 border-b border-slate-100 last:border-0">
+                    <div class="w-32 text-sm font-semibold text-slate-800 shrink-0 pt-1">External links:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#"
+                            class="px-3 py-1.5 bg-white border border-slate-200 rounded-md text-sm font-medium text-brand-600 shadow-sm hover:border-brand-300 hover:text-brand-700 transition-colors inline-flex items-center gap-1.5">
+                            <i data-lucide="link" class="w-3.5 h-3.5"></i> Mediaplan
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- The 4-Level List -->
+        <div class="mt-12 space-y-12 pb-16">
+
+            <!-- LEVEL 1: Meta -->
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-300 pb-3 mb-6">Meta</h2>
+
+                <!-- LEVEL 2: Företagsförsäkring -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-slate-800 border-b border-slate-300 pb-2 inline-block">
+                        Företagsförsäkring</h3>
+
+                    <!-- LEVEL 3: Columns (Audiences) -->
+                    <div class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+
+                        <!-- Column: Generell -->
+                        <div
+                            class="min-w-[280px] sm:min-w-[320px] max-w-[400px] bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-4 shadow-sm hover:border-brand-300 transition-colors">
+                            <h4
+                                class="text-base font-semibold text-slate-700 text-center pb-2 border-b border-slate-100">
+                                Generell</h4>
+
+                            <!-- LEVEL 4: Grid of Ads -->
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                                <!-- Ad Card -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1542223616-740d5dff7f56?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <!-- Badges overlay -->
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1542223616-740d5dff7f56?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <!-- Badges overlay -->
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1518655061710-5ccf392c275a?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card Video -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1518655061710-5ccf392c275a?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-brand-700/90 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                                                <i data-lucide="play" class="w-5 h-5 text-brand-700 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Video 20s</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card Video 45s -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1542223616-740d5dff7f56?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-brand-700/90 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                                                <i data-lucide="play" class="w-5 h-5 text-brand-700 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Video 45s</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1542223616-740d5dff7f56?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            A</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column: Bygg & Transport -->
+                        <div
+                            class="min-w-[280px] sm:min-w-[320px] max-w-[400px] bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-4 shadow-sm hover:border-brand-300 transition-colors">
+                            <h4
+                                class="text-base font-semibold text-slate-700 text-center pb-2 border-b border-slate-100">
+                                Bygg & Transport</h4>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                                <!-- Ad Card C series -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1506821262070-5b6fbbed56c4?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-700/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            C</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1506821262070-5b6fbbed56c4?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-6 h-6 bg-slate-700/80 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            C</div>
+                                        <div
+                                            class="absolute bottom-1.5 right-1.5 w-5 h-5 bg-white/90 backdrop-blur-sm rounded-sm flex items-center justify-center">
+                                            <i data-lucide="image" class="w-3.5 h-3.5 text-slate-700"></i></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Bild</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card Video Co -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-7 h-7 bg-brand-600/90 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            Co</div>
+                                        <div
+                                            class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                                                <i data-lucide="play" class="w-5 h-5 text-brand-700 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Video 10s</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                                <!-- Ad Card Video Co -->
+                                <div class="flex flex-col gap-2 p-1 group cursor-pointer">
+                                    <div
+                                        class="relative w-full aspect-[4/5] bg-slate-200 rounded-lg overflow-hidden flex-shrink-0 group-hover:shadow-md transition-shadow">
+                                        <img src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&q=80&w=200"
+                                            alt="ad" class="w-full h-full object-cover">
+                                        <div
+                                            class="absolute top-1.5 left-1.5 w-7 h-7 bg-brand-600/90 backdrop-blur-sm text-white text-xs font-bold rounded-full flex items-center justify-center border border-white/20">
+                                            Co</div>
+                                        <div
+                                            class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                                                <i data-lucide="play" class="w-5 h-5 text-brand-700 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-xs text-slate-500 font-medium">Video 15s</span>
+                                        <span
+                                            class="inline-flex items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200">Live</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management Modals | ellaella.io</title>
+    <meta name="description" content="User management modal designs: Invite, Edit and Assign Content Plans.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369A1',
+                            800: '#075985',
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0F172A',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Form input */
+        .form-input {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            transition: all 0.2s ease-in-out;
+            color: #0F172A;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Custom checkbox */
+        .custom-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #0369A1;
+            border-color: #0369A1;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 4.5px;
+            top: 1px;
+            width: 5px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .custom-checkbox:hover:not(:checked) {
+            border-color: #94a3b8;
+        }
+
+        .custom-checkbox:focus {
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        /* Plan row */
+        .plan-row {
+            transition: all 0.12s ease;
+        }
+
+        .plan-row:hover {
+            background-color: #f8fafc;
+        }
+
+        .plan-row.checked {
+            background-color: #f0f9ff;
+            border-color: #bae6fd;
+        }
+
+        /* Toggle password visibility */
+        .password-toggle {
+            transition: color 0.15s ease;
+        }
+
+        .password-toggle:hover {
+            color: #0F172A;
+        }
+
+        /* Modal card shadow */
+        .modal-card {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Tab buttons */
+        .tab-btn {
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+            box-shadow: 0 1px 3px rgba(3, 105, 161, 0.3);
+        }
+
+        .tab-btn:not(.active):hover {
+            background-color: #f1f5f9;
+            color: #0F172A;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-900 min-h-screen font-sans">
+
+    <!-- ────────────────────────────────────────── -->
+    <!-- PAGE HEADER: Tab Switcher -->
+    <!-- ────────────────────────────────────────── -->
+    <div class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-brand-500/20">
+                        e</div>
+                    <h1 class="text-base font-bold text-slate-900 tracking-tight">User Management Modals</h1>
+                </div>
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
+                    <button class="tab-btn active px-4 py-1.5 text-sm font-semibold rounded-md cursor-pointer"
+                        onclick="showModal('invite')">
+                        Invite User
+                    </button>
+                    <button class="tab-btn px-4 py-1.5 text-sm font-semibold text-slate-500 rounded-md cursor-pointer"
+                        onclick="showModal('edit')">
+                        Edit User
+                    </button>
+                    <button class="tab-btn px-4 py-1.5 text-sm font-semibold text-slate-500 rounded-md cursor-pointer"
+                        onclick="showModal('assign')">
+                        Assign Plans
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- MODAL SHOWCASE AREA -->
+    <!-- ════════════════════════════════════════════ -->
+    <div class="flex items-center justify-center min-h-[calc(100vh-64px)] p-8">
+
+        <!-- Fake background content -->
+        <div class="fixed inset-0 z-0 pointer-events-none">
+            <div class="max-w-5xl mx-auto p-8 pt-24 opacity-[0.06]">
+                <div class="h-12 bg-slate-900 rounded-xl mb-6 w-48"></div>
+                <div class="space-y-3">
+                    <div class="h-14 bg-slate-900 rounded-xl"></div>
+                    <div class="h-14 bg-slate-900 rounded-xl"></div>
+                    <div class="h-14 bg-slate-900 rounded-xl"></div>
+                    <div class="h-14 bg-slate-900 rounded-xl"></div>
+                    <div class="h-14 bg-slate-900 rounded-xl"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay backdrop -->
+        <div class="fixed inset-0 z-10 bg-slate-900/30 backdrop-blur-[2px]"></div>
+
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- MODAL 1: INVITE USER -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="modal-invite" class="relative z-20 w-full max-w-md">
+            <div class="modal-card bg-white rounded-2xl overflow-hidden">
+
+                <!-- Header -->
+                <div class="px-6 pt-6 pb-0">
+                    <div class="flex items-start justify-between mb-1">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center">
+                                <i data-lucide="user-plus" class="w-5 h-5 text-brand-700"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Invite User</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Create credentials and assign a role</p>
+                            </div>
+                        </div>
+                        <button
+                            class="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="mx-6 mt-4 mb-0 h-px bg-slate-100"></div>
+
+                <!-- Body -->
+                <div class="px-6 py-5 space-y-5">
+
+                    <!-- Role -->
+                    <div class="space-y-1.5">
+                        <label for="invite-role" class="block text-sm font-semibold text-slate-900">Role</label>
+                        <div class="relative">
+                            <select id="invite-role"
+                                class="form-input appearance-none pr-10 cursor-pointer font-medium">
+                                <option value="admin">Admin</option>
+                                <option value="user" selected>User</option>
+                            </select>
+                            <div
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500"><strong class="text-slate-600">Admin</strong> — full access to
+                            all plans. <strong class="text-slate-600">User</strong> — access only to assigned plans.</p>
+                    </div>
+
+                    <!-- Name -->
+                    <div class="space-y-1.5">
+                        <label for="invite-name" class="block text-sm font-semibold text-slate-900">Display Name</label>
+                        <input id="invite-name" type="text" class="form-input" placeholder="e.g. Anna Svensson">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="space-y-1.5">
+                        <label for="invite-email" class="block text-sm font-semibold text-slate-900">Email</label>
+                        <div class="relative">
+                            <div
+                                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i data-lucide="mail" class="w-4 h-4"></i>
+                            </div>
+                            <input id="invite-email" type="email" class="form-input pl-10"
+                                placeholder="anna@company.com">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="space-y-1.5">
+                        <label for="invite-password" class="block text-sm font-semibold text-slate-900">Password</label>
+                        <div class="relative">
+                            <div
+                                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i data-lucide="lock" class="w-4 h-4"></i>
+                            </div>
+                            <input id="invite-password" type="password" class="form-input pl-10 pr-10" value="Xk9#mPw2">
+                            <button type="button"
+                                class="password-toggle absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 cursor-pointer"
+                                onclick="const inp = document.getElementById('invite-password'); inp.type = inp.type === 'password' ? 'text' : 'password'; this.querySelector('i').setAttribute('data-lucide', inp.type === 'password' ? 'eye-off' : 'eye'); lucide.createIcons();">
+                                <i data-lucide="eye-off" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Send password checkbox -->
+                    <label class="flex items-center gap-2.5 cursor-pointer select-none group">
+                        <input type="checkbox" checked class="custom-checkbox">
+                        <span class="text-sm text-slate-700 group-hover:text-slate-900 transition-colors">Send login
+                            credentials via email</span>
+                    </label>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                        Cancel
+                    </button>
+                    <button
+                        class="px-5 py-2 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors shadow-sm shadow-brand-700/15 cursor-pointer flex items-center gap-2">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                        Create Account
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- MODAL 2: EDIT USER -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="modal-edit" class="relative z-20 w-full max-w-md hidden">
+            <div class="modal-card bg-white rounded-2xl overflow-hidden">
+
+                <!-- Header with avatar -->
+                <div class="px-6 pt-6 pb-0">
+                    <div class="flex items-start justify-between mb-1">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                                AS</div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Edit User</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">anna@ellaella.io</p>
+                            </div>
+                        </div>
+                        <button
+                            class="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mx-6 mt-4 mb-0 h-px bg-slate-100"></div>
+
+                <!-- Body -->
+                <div class="px-6 py-5 space-y-5">
+
+                    <!-- Role -->
+                    <div class="space-y-1.5">
+                        <label for="edit-role" class="block text-sm font-semibold text-slate-900">Role</label>
+                        <div class="relative">
+                            <select id="edit-role" class="form-input appearance-none pr-10 cursor-pointer font-medium">
+                                <option value="admin">Admin</option>
+                                <option value="user" selected>User</option>
+                            </select>
+                            <div
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Display Name -->
+                    <div class="space-y-1.5">
+                        <label for="edit-name" class="block text-sm font-semibold text-slate-900">Display Name</label>
+                        <input id="edit-name" type="text" class="form-input" value="Anna Svensson">
+                    </div>
+
+                    <!-- Email (read-only) -->
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-semibold text-slate-900">Email</label>
+                        <div
+                            class="flex items-center gap-2 px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-500">
+                            <i data-lucide="mail" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                            <span>anna@ellaella.io</span>
+                            <span
+                                class="ml-auto text-[10px] font-bold text-slate-400 uppercase tracking-wider">Read-only</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                    <!-- Left: Delete -->
+                    <button
+                        class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg border border-transparent hover:border-red-200 transition-all cursor-pointer">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        Delete Account
+                    </button>
+                    <!-- Right: Actions -->
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                            Cancel
+                        </button>
+                        <button
+                            class="px-5 py-2 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors shadow-sm shadow-brand-700/15 cursor-pointer flex items-center gap-2">
+                            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- MODAL 3: ASSIGN CONTENT PLANS -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="modal-assign" class="relative z-20 w-full max-w-md hidden">
+            <div class="modal-card bg-white rounded-2xl overflow-hidden">
+
+                <!-- Header -->
+                <div class="px-6 pt-6 pb-0">
+                    <div class="flex items-start justify-between mb-1">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                                <i data-lucide="layout-list" class="w-5 h-5 text-emerald-600"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Assign Content Plans</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Anna Svensson · User</p>
+                            </div>
+                        </div>
+                        <button
+                            class="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mx-6 mt-4 mb-0 h-px bg-slate-100"></div>
+
+                <!-- Body -->
+                <div class="px-6 py-5 space-y-4">
+
+                    <!-- Info banner -->
+                    <div class="flex items-start gap-2.5 p-3 bg-brand-50 border border-brand-100 rounded-lg">
+                        <i data-lucide="info" class="w-4 h-4 text-brand-600 mt-0.5 shrink-0"></i>
+                        <p class="text-xs text-brand-800 leading-relaxed">Select which content plans this user can
+                            access. <strong>Admin</strong> users automatically have access to all plans.</p>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="relative">
+                        <div
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </div>
+                        <input type="text" class="form-input pl-9 text-sm" placeholder="Search content plans...">
+                    </div>
+
+                    <!-- Plans list -->
+                    <div class="space-y-1.5 max-h-[320px] overflow-y-auto pr-1"
+                        style="scrollbar-width: thin; scrollbar-color: #e2e8f0 transparent;">
+
+                        <!-- Plan row: checked -->
+                        <label
+                            class="plan-row checked flex items-center gap-3 px-3.5 py-3 border border-brand-200 bg-brand-50/50 rounded-lg cursor-pointer">
+                            <input type="checkbox" checked class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-slate-900 truncate">LF GBG | TRYGGHETS&shy;TJÄNSTER
+                                    | 2026</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Active</span>
+                        </label>
+
+                        <!-- Plan row: unchecked -->
+                        <label
+                            class="plan-row flex items-center gap-3 px-3.5 py-3 border border-slate-200 rounded-lg cursor-pointer">
+                            <input type="checkbox" class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-slate-700 truncate">Friloo</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Active</span>
+                        </label>
+
+                        <!-- Plan row: checked -->
+                        <label
+                            class="plan-row checked flex items-center gap-3 px-3.5 py-3 border border-brand-200 bg-brand-50/50 rounded-lg cursor-pointer">
+                            <input type="checkbox" checked class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-slate-900 truncate">LF GBG | PRIVAT&shy;FÖRSÄKRING
+                                    | 2026</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Active</span>
+                        </label>
+
+                        <!-- Plan row: unchecked -->
+                        <label
+                            class="plan-row flex items-center gap-3 px-3.5 py-3 border border-slate-200 rounded-lg cursor-pointer">
+                            <input type="checkbox" class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-slate-700 truncate">Testplan</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-slate-500 bg-slate-50 border border-slate-200 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Draft</span>
+                        </label>
+
+                        <!-- Plan row: checked -->
+                        <label
+                            class="plan-row checked flex items-center gap-3 px-3.5 py-3 border border-brand-200 bg-brand-50/50 rounded-lg cursor-pointer">
+                            <input type="checkbox" checked class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-slate-900 truncate">Utbildningsradion | 2026</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Active</span>
+                        </label>
+
+                        <!-- Plan row: checked -->
+                        <label
+                            class="plan-row checked flex items-center gap-3 px-3.5 py-3 border border-brand-200 bg-brand-50/50 rounded-lg cursor-pointer">
+                            <input type="checkbox" checked class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-slate-900 truncate">LF GBG | FÖRETAG | 2026</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">Active</span>
+                        </label>
+
+                        <!-- Plan row: unchecked -->
+                        <label
+                            class="plan-row flex items-center gap-3 px-3.5 py-3 border border-slate-200 rounded-lg cursor-pointer">
+                            <input type="checkbox" class="custom-checkbox">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-slate-700 truncate">Summer Campaign 2026</p>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">On
+                                Hold</span>
+                        </label>
+                    </div>
+
+                    <!-- Selection summary -->
+                    <div class="flex items-center gap-2 text-xs text-slate-500 pt-1">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-600"></i>
+                        <span><strong class="text-slate-700">4 of 7</strong> plans assigned</span>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                        Cancel
+                    </button>
+                    <button
+                        class="px-5 py-2 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors shadow-sm shadow-brand-700/15 cursor-pointer flex items-center gap-2">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                        Save Assignments
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Tab switching
+        function showModal(name) {
+            // Hide all modals
+            document.getElementById('modal-invite').classList.add('hidden');
+            document.getElementById('modal-edit').classList.add('hidden');
+            document.getElementById('modal-assign').classList.add('hidden');
+
+            // Show selected
+            document.getElementById('modal-' + name).classList.remove('hidden');
+
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Interactive checkbox toggling for plan rows
+        document.querySelectorAll('.plan-row input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const row = cb.closest('.plan-row');
+                if (cb.checked) {
+                    row.classList.add('checked');
+                    row.classList.remove('border-slate-200');
+                    row.classList.add('border-brand-200', 'bg-brand-50/50');
+                    // Make text bolder
+                    const text = row.querySelector('p');
+                    text.classList.remove('font-medium', 'text-slate-700');
+                    text.classList.add('font-semibold', 'text-slate-900');
+                } else {
+                    row.classList.remove('checked', 'border-brand-200', 'bg-brand-50/50');
+                    row.classList.add('border-slate-200');
+                    const text = row.querySelector('p');
+                    text.classList.remove('font-semibold', 'text-slate-900');
+                    text.classList.add('font-medium', 'text-slate-700');
+                }
+
+                // Update counter
+                const total = document.querySelectorAll('#modal-assign .plan-row input[type="checkbox"]').length;
+                const checked = document.querySelectorAll('#modal-assign .plan-row input[type="checkbox"]:checked').length;
+                const counter = document.querySelector('#modal-assign .text-xs strong');
+                if (counter) counter.textContent = checked + ' of ' + total;
+            });
+        });
+    </script>
+</body>
+
+</html>

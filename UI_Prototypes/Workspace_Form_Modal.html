@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ellaella.io - Workspace Form Modal</title>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Tailwind Config mapping our Design System -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369A1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0F172A',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for options grids */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<!-- Main body acting as the underlying page with the modal on top -->
+
+<body class="bg-slate-50 text-slate-900 min-h-screen relative overflow-hidden font-sans">
+
+    <!-- Background Content (Just to show the modal context) -->
+    <div
+        class="fixed top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-3xl -z-10 pointer-events-none">
+    </div>
+    <div
+        class="fixed bottom-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-slate-300/20 blur-3xl -z-10 pointer-events-none">
+    </div>
+
+    <div class="p-8 opacity-20 pointer-events-none">
+        <h1 class="text-3xl font-bold mb-4">Workspaces</h1>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="h-48 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-48 bg-white border border-slate-200 rounded-xl"></div>
+            <div class="h-48 bg-white border border-slate-200 rounded-xl"></div>
+        </div>
+    </div>
+
+    <!-- MODAL OVERLAY (Glassmorphism backdrop) -->
+    <div
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/40 backdrop-blur-sm transition-opacity">
+
+        <!-- MODAL CONTAINER -->
+        <div
+            class="w-full max-w-2xl bg-white rounded-2xl shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]">
+
+            <!-- Modal Header -->
+            <div
+                class="flex items-center justify-between px-6 py-5 border-b border-slate-200 bg-white sticky top-0 z-10">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Edit Workspace</h2>
+                    <p class="text-sm text-slate-500 mt-1">Configure workspace details, branding, and status.</p>
+                </div>
+                <button
+                    class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-8">
+
+                <!-- 1. Workspace Name -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-900">Workspace Name *</label>
+                    <input type="text" value="Serenity Spa App" placeholder="Enter workspace name"
+                        class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-slate-400">
+                </div>
+
+                <!-- 2. Status -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-900">Status</label>
+                    <div class="relative">
+                        <select
+                            class="appearance-none w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all cursor-pointer">
+                            <option value="active" selected>Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Icon Selection (20 Icons) -->
+                <div class="space-y-3">
+                    <label class="block text-sm font-semibold text-slate-900">Workspace Icon</label>
+                    <div class="grid grid-cols-5 sm:grid-cols-10 gap-3">
+                        <!-- Icon 1 (Selected) -->
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border-2 border-brand-500 bg-brand-50 text-brand-700 transition-all">
+                            <i data-lucide="building-2" class="w-5 h-5"></i>
+                        </button>
+                        <!-- Other Icons (Unselected) -->
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="briefcase" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="store" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="cpu" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="globe" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="layout-grid" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="smartphone" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="rocket" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="zap" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="camera" class="w-5 h-5"></i></button>
+
+                        <!-- Row 2 -->
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="heart" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="star" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="shield" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="users" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="message-square" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="calendar" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="music" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="video" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="shopping-bag" class="w-5 h-5"></i></button>
+                        <button
+                            class="flex items-center justify-center w-12 h-12 rounded-lg border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"><i
+                                data-lucide="gem" class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+
+                <!-- 4. Brand Color (10 Colors) -->
+                <div class="space-y-3">
+                    <label class="block text-sm font-semibold text-slate-900">Brand Color</label>
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Theme Brand -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#0ea5e9] hover:scale-110 transition-transform shadow-sm flex items-center justify-center ring-2 ring-offset-2 ring-[#0ea5e9] cursor-pointer">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </button>
+                        <!-- Other colors -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#10b981] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#10b981] cursor-pointer"></button>
+                        <!-- Emerald -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#3b82f6] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#3b82f6] cursor-pointer"></button>
+                        <!-- Blue -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#6366f1] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#6366f1] cursor-pointer"></button>
+                        <!-- Indigo -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#8b5cf6] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#8b5cf6] cursor-pointer"></button>
+                        <!-- Violet -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#d946ef] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#d946ef] cursor-pointer"></button>
+                        <!-- Fuchsia -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#f43f5e] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#f43f5e] cursor-pointer"></button>
+                        <!-- Rose -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#ef4444] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#ef4444] cursor-pointer"></button>
+                        <!-- Red -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#f59e0b] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#f59e0b] cursor-pointer"></button>
+                        <!-- Amber -->
+                        <button
+                            class="w-10 h-10 rounded-full bg-[#0f172a] hover:scale-110 transition-transform shadow-sm hover:ring-2 ring-offset-2 ring-[#0f172a] cursor-pointer"></button>
+                        <!-- Slate 900 -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer (Actions) -->
+            <div
+                class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4 sticky bottom-0 z-10">
+                <!-- Left: Delete Button (Danger) -->
+                <button
+                    class="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-red-600 font-medium py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-red-50 hover:border-red-200 hover:text-red-700 transition-colors">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    Delete Workspace
+                </button>
+
+                <!-- Right: Cancel & Save -->
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button
+                        class="w-full sm:w-auto bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium py-2.5 px-5 rounded-lg transition-colors shadow-sm">
+                        Cancel
+                    </button>
+                    <button
+                        class="w-full sm:w-auto bg-brand-700 hover:bg-brand-800 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors shadow-sm shadow-brand-700/20">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

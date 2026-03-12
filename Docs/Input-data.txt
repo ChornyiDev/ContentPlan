@@ -1,0 +1,161 @@
+Client Task:
+Project: Web App / Directory for Managing Live Ad Campaigns
+Overview
+We are building a web-based app that functions as a directory for ad campaigns, allowing clients to log in and view all currently live ads, filter by tags, add and edit ads, as well as manage their own content plans.
+Each ad in the system has multiple tags (for example: platform, campaign type, audience, etc.), allowing users to filter and showcase ads dynamically within the directory.
+No API connections right now, instead we want to create a easy to use workspace that can be used instead of Google Sheets which we use now. 
+Since this is a trial, we would like to make it as cheap as possible when it comes to backend etc.
+We already have a fully functional prototype built in Loveable: 
+
+In loveable, there are three pages:
+
+The start page for the client, where all their content plans are
+https://preview--ad-sheets-filter.lovable.app
+
+Each content plan itself, with two pages/versions: Always on and Kampanjer (campaigns)
+https://preview--ad-sheets-filter.lovable.app/ad-manager
+
+3. Admin view, for us to create accounts (user name and password, one for each client to share) and content plans, as well as assign content plans. 
+lovable.dev/auth-bridge?project_id=dd164507-4b16-4988-82aa-02e54f37c5d9&return_url=https%3A%2F%2Fpreview--ad-sheets-filter.lovable.app%2Fadmin
+
+
+
+
+clarification:
+
+Technical Specification (TS) Clarification Questions
+
+
+The following questions are designed to gather the necessary details to move from the current project overview to a complete, actionable Technical Specification (TS) for developers.I. Functional Requirements & User Experience
+Content Plans:
+What attributes are required for a Content Plan itself (e.g., Client Name, Plan Status, Creation Date)?
+
+Field Name
+Description(Optional)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ad Content Details (The 'Ad' Object):
+What specific fields/attributes must each Ad object contain? Which of these fields are editable by the Client user, and which are read-only?
+Fill in the table below or provide a link to an English example.
+Field Name
+Description(Optional)
+User Editable
+
+
+
+Tagging and Filtering:
+Should the administrator be able to add new tag categories and tags via the admin panel?
+A: Yes, the only admins will be us. If the client want to add something they will have to contact us. 
+
+
+
+Will tags and tag categories be the same for all users, or will they be individual or a combination of both?
+A: Tags and categories will be unique for each content plan (and also for Always on and Kampanjer/Campaigns). All users will see the same view (ads, tags, categories etc).
+
+
+
+Content Plan Pages:
+The prototype shows two versions: "Always on" and "Kampanjer (campaigns)". What is the fundamental difference in functionality or data structure between these two views?
+A: The reason to this is the way our clients plan their budgets. They usually have both ads running all the time (Always on) and specific campaign periods (Campaigns). 
+
+Since Always on and Campaigns usually have different ads, different budgets and are planned separately - they need to be in separate sheets. 
+
+An alternative could also be that they are in the same sheet/page but are separated by this kind of field, so that you choose if you want to see all ads (Alla annonser), Always on or a specific Campaign (all options underneath Always on.
+
+
+
+What actions can a user perform on the Content Plan page (e.g., create a new Ad, export data)?
+A: Everything that one is able to do in the Loveable mock right now. Add new ads and edit existing ones as well as delete them. 
+
+
+Ad Creation/Editing Flow:
+Are there any required fields or validation rules that must be enforced during the Ad creation/editing process
+A: We have ented maximum letters for headlines etc, and the editor must not exceed that amount of letters, or they won’t be able to save the ad. 
+
+Apart from that there are no rules. One should be able to create an ad and finish at at a later time. 
+
+
+
+Design Reference Template
+Visit the Marketplace and select the free template for design reference
+A: We really like this one:
+https://marketplace.flutterflow.io/item/cNlm0zWW1Nfq11cFXBmp
+
+
+
+Upwork contract
+Is it necessary to create a new contract for this project, or is it possible to work within the Friloo contract?
+A: We can use the same contract as Friloo.
+
+
+
+
+
+
+
+tech stack:
+FlutterFlow
+Firebase
+
+
+ad fields list:
+Tags category Individual for each content plan:
+
+Marked
+Funnel step
+Audience
+Product
+
+
+
+static fields:
+Status
+Platform
+Campaign
+Ad name
+Media type
+Landing page
+Link to assets
+Comments
+
+fields based: on platform
+  meta:
+    Förtext/Preview text (1-5)
+    Rubrik/Headline (1-5)
+
+  snapchat:
+    Rubrik/Headline (1-1)
+
+  tiktok:
+    Annonstext/Ad text (1-1)
+
+  youtube:
+    Rubrik/Headline (1-1)
+    Kort rubrik/Short headline (1-1)
+    Lång rubrik/Long headline (1-1)
+
+  pinterest:
+    Rubrik/Headline (1-1)
+    Beskrivning/Description (1-1)
+
+
+
+початкові сутності таблиці
+
+users
+content_plans
+campaigns
+ads

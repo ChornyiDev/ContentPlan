@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Plan - ellaella.io</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Custom Scrollbar for the timeline */
+        .timeline-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .timeline-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .timeline-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .timeline-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-900 overflow-x-hidden antialiased selection:bg-brand-100 selection:text-brand-800">
+
+    <!-- Top Navigation (Mock) -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="layout-dashboard" class="w-6 h-6 text-brand-600"></i>
+                <span class="font-bold text-lg tracking-tight">ellaella.io</span>
+                <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-medium ml-2 border border-slate-200">Workspace: Acme Corp</span>
+            </div>
+            <div class="flex flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" placeholder="Search campaigns, plans..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] placeholder-slate-400">
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100 relative">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 text-white flex items-center justify-center font-semibold text-sm shadow-sm ring-2 ring-white">PR</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Page Header -->
+        <div class="flex items-center justify-between">
+            <div>
+                <!-- V2: Header with Media Plan Name and Link to Content Plan -->
+                <div class="flex items-center gap-4">
+                    <h1 class="text-3xl font-bold tracking-tight">Q1 Marketing 2024</h1>
+                    <a href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg border border-brand-200 transition-colors shadow-sm">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        View Content Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-Header: Campaign Tabs & Actions -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-2 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sticky top-[80px] z-40">
+            <!-- Tabs -->
+            <div class="flex overflow-x-auto gap-2 w-full md:w-auto pb-2 md:pb-0 timeline-scroll px-2 py-1">
+                <button class="shrink-0 px-4 py-2 text-sm font-semibold rounded-lg bg-slate-900 text-white shadow-sm">
+                    Campaign 1: Traffic
+                </button>
+                <button class="shrink-0 px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                    Campaign 2: Converting
+                </button>
+                <button class="shrink-0 px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                    Always On
+                </button>
+                <button class="shrink-0 px-4 py-2 text-sm font-medium rounded-lg text-brand-600 hover:text-brand-700 hover:bg-brand-50 border border-dashed border-brand-300 transition-colors flex items-center gap-1">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Add Campaign
+                </button>
+            </div>
+
+            <!-- Campaign Stats & Actions -->
+            <div class="flex items-center gap-4 shrink-0 px-2 md:px-4">
+                <div class="flex flex-col items-end">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total Campaign Budget</span>
+                    <span class="text-xl font-bold text-slate-900">150,000 <span class="text-xs font-semibold text-slate-400">kr</span></span>
+                </div>
+                <div class="w-px h-8 bg-slate-200"></div>
+                <button class="bg-brand-700 hover:bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm transition-all focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 flex items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    Add Budget Record
+                </button>
+            </div>
+        </div>
+
+        <!-- Budget Blocks Container -->
+        <div class="space-y-6">
+
+            <!-- Budget Block 1: META -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+                <!-- Platform Color Accent -->
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-[#1877F2]"></div>
+                
+                <!-- Budget Header -->
+                <div class="p-6 pb-4 border-b border-slate-100 flex items-start justify-between">
+                    <div class="pl-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <h2 class="text-xl font-bold text-slate-900 uppercase tracking-tight">META</h2>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md font-semibold text-sm">100,000 kr</span>
+                        </div>
+                        
+                        <!-- Custom Fields as Chips -->
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-brand-50 text-brand-700 rounded-md border border-brand-100 text-xs font-medium">
+                                <span class="text-brand-600/70">Main KPI:</span>
+                                <span>LINK CLICKS</span>
+                            </div>
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-700 rounded-md border border-slate-200 text-xs font-medium">
+                                <span class="text-slate-500">Period:</span>
+                                <span>JAN - DEC</span>
+                            </div>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-md border border-dashed border-slate-300 hover:border-brand-200 text-xs font-medium transition-colors">
+                                <i data-lucide="plus" class="w-3 h-3"></i> Add Field
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-end gap-2 shrink-0">
+                        <div class="flex items-center gap-2 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="p-1.5 text-slate-400 hover:text-brand-600 rounded-md hover:bg-brand-50 transition-colors" title="Edit Budget">
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                            </button>
+                            <button class="p-1.5 text-slate-400 hover:text-red-600 rounded-md hover:bg-red-50 transition-colors" title="Delete Budget">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Budget Note -->
+                        <div class="max-w-xs text-right mt-2 mr-2">
+                            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Notes:</div>
+                            <p class="text-sm text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-100 italic leading-snug">Focusing heavily on top-of-funnel awareness during Q1 before shifting to conversion in Q2.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segments Section -->
+                <div class="p-6 pt-4 bg-slate-50/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-700">Segments (2)</h3>
+                        <button class="text-xs font-medium text-brand-600 hover:text-brand-800 flex items-center gap-1 transition-colors">
+                            <i data-lucide="plus" class="w-3 h-3"></i> Add Segment
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        
+                        <!-- Segment 1 -->
+                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-slate-300 transition-colors flex flex-col xl:flex-row gap-6 items-start xl:items-center">
+                            
+                            <!-- Left: Info & Custom Fields -->
+                            <div class="flex-1 w-full min-w-0">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-emerald-500"></div> <!-- Live Indicator -->
+                                        <span class="font-semibold text-sm text-slate-900 truncate">Audience 1</span>
+                                    </div>
+                                    <button class="p-1 text-slate-300 hover:text-slate-500 rounded transition-colors xl:hidden">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <div class="inline-flex items-center px-2 py-1 bg-slate-100 text-slate-600 rounded text-[11px] font-medium border border-slate-200 hover:bg-slate-200 cursor-pointer transition-colors group/chip">
+                                        <span class="text-slate-400 mr-1">Placements:</span> Default
+                                        <i data-lucide="x" class="w-3 h-3 ml-1 opacity-0 group-hover/chip:opacity-100 text-slate-400 hover:text-red-500"></i>
+                                    </div>
+                                    <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded border border-dashed border-slate-300 hover:border-brand-200 text-[11px] font-medium transition-colors">
+                                        <i data-lucide="plus" class="w-3 h-3"></i> Add Field
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Right: 52-Week Timeline Scroll -->
+                            <div class="w-full xl:w-2/3 max-w-2xl bg-slate-50 border border-slate-200 rounded-md p-2">
+                                <div class="flex text-[10px] font-semibold text-slate-400 mb-1 px-1">
+                                    <div class="w-24 shrink-0">JAN</div>
+                                    <div class="w-24 shrink-0">FEB</div>
+                                    <div class="w-24 shrink-0">MAR</div>
+                                    <div class="w-24 shrink-0">APR</div>
+                                    <div class="w-24 shrink-0">MAY</div>
+                                    <div class="w-24 shrink-0">JUN</div>
+                                    <span>...</span>
+                                </div>
+                                <div class="timeline-scroll overflow-x-auto flex gap-1 pb-1">
+                                    <script>
+                                        for(let i=1; i<=24; i++) {
+                                            // Make first 12 weeks active
+                                            const isActive = i <= 12;
+                                            const activeClass = isActive 
+                                                ? 'bg-emerald-100 border-emerald-400 text-emerald-700 hover:bg-emerald-200' 
+                                                : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-100';
+                                                
+                                            document.write(`
+                                                <div class="w-6 h-6 flex-shrink-0 rounded-[3px] border ${activeClass} flex items-center justify-center cursor-pointer transition-colors" title="Week ${i}">
+                                                    ${i}
+                                                </div>
+                                            `);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            
+                            <button class="p-1.5 text-slate-300 hover:text-slate-500 rounded transition-colors hidden xl:block shrink-0">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Segment 2 -->
+                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-slate-300 transition-colors flex flex-col xl:flex-row gap-6 items-start xl:items-center">
+                            
+                            <div class="flex-1 w-full min-w-0">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-slate-300"></div> <!-- Not Live -->
+                                        <span class="font-semibold text-sm text-slate-900 truncate">Audience 2 + Look a like</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <div class="inline-flex items-center px-2 py-1 bg-slate-100 text-slate-600 rounded text-[11px] font-medium border border-slate-200 hover:bg-slate-200 cursor-pointer transition-colors group/chip">
+                                        <span class="text-slate-400 mr-1">Placements:</span> IG Stories
+                                        <i data-lucide="x" class="w-3 h-3 ml-1 opacity-0 group-hover/chip:opacity-100 text-slate-400 hover:text-red-500"></i>
+                                    </div>
+                                    <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded border border-dashed border-slate-300 hover:border-brand-200 text-[11px] font-medium transition-colors">
+                                        <i data-lucide="plus" class="w-3 h-3"></i> Add Field
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="w-full xl:w-2/3 max-w-2xl bg-slate-50 border border-slate-200 rounded-md p-2">
+                                <div class="flex text-[10px] font-semibold text-slate-400 mb-1 px-1">
+                                    <div class="w-24 shrink-0">JAN</div>
+                                    <div class="w-24 shrink-0">FEB</div>
+                                    <div class="w-24 shrink-0">MAR</div>
+                                    <div class="w-24 shrink-0">APR</div>
+                                    <div class="w-24 shrink-0">MAY</div>
+                                    <div class="w-24 shrink-0">JUN</div>
+                                    <span>...</span>
+                                </div>
+                                <div class="timeline-scroll overflow-x-auto flex gap-1 pb-1">
+                                    <script>
+                                        for(let i=1; i<=24; i++) {
+                                            // Make weeks 9-16 active
+                                            const isActive = i >= 9 && i <= 16;
+                                            const activeClass = isActive 
+                                                ? 'bg-emerald-100 border-emerald-400 text-emerald-700 hover:bg-emerald-200' 
+                                                : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-100';
+                                                
+                                            document.write(`
+                                                <div class="w-6 h-6 flex-shrink-0 rounded-[3px] border ${activeClass} flex items-center justify-center cursor-pointer transition-colors" title="Week ${i}">
+                                                    ${i}
+                                                </div>
+                                            `);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            
+                            <button class="p-1.5 text-slate-300 hover:text-slate-500 rounded transition-colors hidden xl:block shrink-0">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Block 2: TIKTOK -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-[#00f2fe]"></div>
+                
+                <div class="p-6 pb-4 border-b border-slate-100 flex items-start justify-between">
+                    <div class="pl-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <h2 class="text-xl font-bold text-slate-900 uppercase tracking-tight">TIKTOK</h2>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md font-semibold text-sm">50,000 kr</span>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-brand-50 text-brand-700 rounded-md border border-brand-100 text-xs font-medium">
+                                <span class="text-brand-600/70">Main KPI:</span>
+                                <span>AWARENESS</span>
+                            </div>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-md border border-dashed border-slate-300 hover:border-brand-200 text-xs font-medium transition-colors">
+                                <i data-lucide="plus" class="w-3 h-3"></i> Add Field
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-end gap-2 shrink-0">
+                        <div class="flex items-center gap-2 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="p-1.5 text-slate-400 hover:text-brand-600 rounded-md hover:bg-brand-50 transition-colors" title="Edit Budget">
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                            </button>
+                            <button class="p-1.5 text-slate-400 hover:text-red-600 rounded-md hover:bg-red-50 transition-colors" title="Delete Budget">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Budget Note (Empty) -->
+                        <div class="max-w-xs text-right mt-2 mr-2">
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-md text-xs font-medium transition-colors">
+                                <i data-lucide="align-left" class="w-3 h-3"></i> Add Note
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 pt-4 bg-slate-50/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-700">Segments (1)</h3>
+                        <button class="text-xs font-medium text-brand-600 hover:text-brand-800 flex items-center gap-1 transition-colors">
+                            <i data-lucide="plus" class="w-3 h-3"></i> Add Segment
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Segment 1 -->
+                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-slate-300 transition-colors flex flex-col xl:flex-row gap-6 items-start xl:items-center">
+                            
+                            <div class="flex-1 w-full min-w-0">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                        <span class="font-semibold text-sm text-slate-900 truncate">Gen Z Engagement</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <div class="inline-flex items-center px-2 py-1 bg-slate-100 text-slate-600 rounded text-[11px] font-medium border border-slate-200 hover:bg-slate-200 cursor-pointer transition-colors group/chip">
+                                        <span class="text-slate-400 mr-1">Placements:</span> Feed
+                                        <i data-lucide="x" class="w-3 h-3 ml-1 opacity-0 group-hover/chip:opacity-100 text-slate-400 hover:text-red-500"></i>
+                                    </div>
+                                    <button class="inline-flex items-center gap-1 px-2 py-1 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded border border-dashed border-slate-300 hover:border-brand-200 text-[11px] font-medium transition-colors">
+                                        <i data-lucide="plus" class="w-3 h-3"></i> Add Field
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="w-full xl:w-2/3 max-w-2xl bg-slate-50 border border-slate-200 rounded-md p-2">
+                                <div class="flex text-[10px] font-semibold text-slate-400 mb-1 px-1">
+                                    <div class="w-24 shrink-0">JAN</div>
+                                    <div class="w-24 shrink-0">FEB</div>
+                                    <div class="w-24 shrink-0">MAR</div>
+                                    <div class="w-24 shrink-0">APR</div>
+                                    <div class="w-24 shrink-0">MAY</div>
+                                    <div class="w-24 shrink-0">JUN</div>
+                                    <span>...</span>
+                                </div>
+                                <div class="timeline-scroll overflow-x-auto flex gap-1 pb-1">
+                                    <script>
+                                        for(let i=1; i<=24; i++) {
+                                            // Make all weeks active just for demo
+                                            const isActive = true;
+                                            const activeClass = isActive 
+                                                ? 'bg-emerald-100 border-emerald-400 text-emerald-700 hover:bg-emerald-200' 
+                                                : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-100';
+                                                
+                                            document.write(`
+                                                <div class="w-6 h-6 flex-shrink-0 rounded-[3px] border ${activeClass} flex items-center justify-center cursor-pointer transition-colors" title="Week ${i}">
+                                                    ${i}
+                                                </div>
+                                            `);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            
+                            <button class="p-1.5 text-slate-300 hover:text-slate-500 rounded transition-colors hidden xl:block shrink-0">
+                                <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
